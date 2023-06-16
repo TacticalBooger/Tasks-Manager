@@ -1,0 +1,28 @@
+<app-user-header></app-user-header>
+<br>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col" class="text-center">Task Subject</th>
+            <th scope="col" class="text-center">Priority</th>
+            <th scope="col" class="text-center">Start Date</th>
+            <th scope="col" class="text-center">Finish Date</th>
+            <th scope="col" class="text-center">Department</th>
+            <th scope="col" class="text-center">Assigned To</th>
+            <th scope="col" class="text-center">Status</th>
+            <th scope="col" class="text-center">Mark as Complete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let userdata of userDataArray, let i = index">
+            <td scope="row" class="text-start">{{userdata.subject}}</td>
+            <td class="text-center" style="background-color: red; font-weight: bold;">{{userdata.priority}}</td>
+            <td class="text-center">{{userdata.start_date}}</td>
+            <td class="text-center">{{userdata.finish_date}}</td>
+            <td class="text-center">{{userdata.department}}</td>
+            <td class="text-center">{{userdata.assignedTo}}</td>
+            <td class="text-center">Testing</td>
+            <td class="text-center"><button class="btn btn-success">Confirm</button></td>
+        </tr>
+    </tbody>
+</table>

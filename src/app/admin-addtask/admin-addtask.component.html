@@ -1,0 +1,61 @@
+<app-admin-header></app-admin-header>
+
+<h2 class="text-center" style="padding-top: 10px;">Add New Task</h2>
+
+<div style="display: flex; justify-content: center;">
+    <form>
+        <div class="form-group">
+            <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject</label>
+            <input [(ngModel)]="taskSubject" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="exampleFormControlInput1"
+                placeholder="Please insert a Task Subject" style="margin-top: 5px; width: 600px;">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1" style="font-weight: bold;">Task Description</label>
+            <textarea [(ngModel)]="taskDescription" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlTextarea1" rows="4"
+                placeholder="Please insert a more detailed Task Description (if needed)"></textarea>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Priority</label>
+            <select [(ngModel)]="taskPriority" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;" placeholder="Please select a Task Priority">
+                <option class="d-none">Please select a Task Priority</option>
+                <option>LOW</option>
+                <option>MED</option>
+                <option>HIGH</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1" style="font-weight: bold;">Department</label>
+            <select [(ngModel)]="taskDepartment" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;">
+                <option class="d-none">Please select a Department</option>
+                <option>Engineering</option>
+                <option>Telecommunication</option>
+                <option>Administrative</option>
+                <option>Other</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To</label>
+            <input [(ngModel)]="taskAssignedTo" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="exampleFormControlInput1"
+                placeholder="Please insert who is specifically assigned to this task (if needed)"
+                style="margin-top: 5px; width: 600px;">
+        </div>
+
+        <br>
+    </form>
+</div>
+
+<div class="text-center">
+
+    <button type="button" class="btn btn-primary" style="font-size: x-large; margin-right: 10px;"><i
+        class="bi bi-box-arrow-left"></i> Back to Tasks View</button>
+
+    <button type="button" class="btn btn-success" style="font-size: x-large; margin-left: 10px;" (click)="addTask()"><i
+            class="bi bi-clipboard2-plus"></i> Add New Task</button>
+</div>
+
+<br>
+<h4 class="text-center" style="font-weight: bold;"> {{addedMessage}} </h4>

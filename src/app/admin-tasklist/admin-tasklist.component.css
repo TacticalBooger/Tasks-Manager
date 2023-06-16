@@ -1,0 +1,11 @@
+.containertest {
+    border-color: grey;
+    background-color: grey;
+    border-style: solid;
+}
+
+td {
+    transition: 0.4s;
+    border-bottom: 2px solid;
+    border-top: 2px solid;
+}
