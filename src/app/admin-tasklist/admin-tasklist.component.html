@@ -1,42 +1,129 @@
-<app-admin-header></app-admin-header>
-<br>
+<div>
 
-<div style="margin-top: 70px;">
+    <app-admin-header></app-admin-header>
+    <br>
 
-<app-admin-tools></app-admin-tools>
+    <div *ngIf="editTaskActive == false" style="margin-top: 70px;">
 
-<table class="table table-hover" style="margin-top: 30px;">
-    <thead>
-        <tr>
-            <th scope="col" class="text-center">Task Subject</th>
-            <th scope="col" class="text-center">Priority</th>
-            <th scope="col" class="text-center">Start Date</th>
-            <th scope="col" class="text-center">Finish Date</th>
-            <th scope="col" class="text-center">Department</th>
-            <th scope="col" class="text-center">Assigned To</th>
-            <th scope="col" class="text-center">Status</th>
-            <th scope="col" class="text-center">Finish Task</th>
-            <th scope="col" class="text-center">Delete Task</th>
-            <th scope="col" class="text-center">Edit Task</th>
-        </tr>
-    </thead>
+        <app-admin-tools></app-admin-tools>
 
-    <tbody>
-        <tr *ngFor="let userdata of userDataArray, let i = index" style="border-left: 2px solid black; border-right: 2px solid black;">
-            <td scope="row" class="text-start" style="width: 350px; height: 60px;" [style.backgroundColor]="taskColor(userdata)">{{userdata.subject}}</td>
-            <td class="text-center" style="font-weight: bold; width: 80px; height: 60px; border-left: 2px solid black; border-right: 2px solid black;" [style.backgroundColor]="priorityColor(userdata)">
-                {{userdata.priority}}</td>
-            <td class="text-center" style="width: 120px; height: 60px;" [style.backgroundColor]="taskColor(userdata)">{{userdata.start_date | date: 'dd MMM yyyy'}}</td>
-            <td class="text-center" style="width: 120px; height: 60px;" [style.backgroundColor]="taskColor(userdata)">{{userdata.finish_date}}</td>
-            <td class="text-center" style="width: 120px; height: 60px;" [style.backgroundColor]="taskColor(userdata)">{{userdata.department}}</td>
-            <td class="text-center" style="width: 120px; height: 60px;" [style.backgroundColor]="taskColor(userdata)">{{userdata.assignedTo}}</td>
-            <td class="text-center" style="width: 100px; height: 60px;" [style.backgroundColor]="taskColor(userdata)">{{userdata.status}}</td>
-            <td class="text-center" style="width: 100px; height: 60px;" [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-success" style="width: 90px;"
-                    (click)="completeTask(i);" [disabled]="userdata.status === 'Completed'">Confirm</button></td>
-            <td class="text-center" style="width: 100px; height: 60px;" [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-danger" style="width: 90px;"
-                    (click)="deleteTask(i)">Delete</button></td>
-            <td class="text-center" style="width: 100px; height: 60px;" [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-primary" style="width: 90px;">Edit</button></td>
-        </tr>
-    </tbody>
-</table>
+        <table class="table table-hover" style="margin-top: 30px;">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Task Subject</th>
+                    <th scope="col" class="text-center">Priority</th>
+                    <th scope="col" class="text-center">Start Date</th>
+                    <th scope="col" class="text-center">Finish Date</th>
+                    <th scope="col" class="text-center">Department</th>
+                    <th scope="col" class="text-center">Assigned To</th>
+                    <th scope="col" class="text-center">Status</th>
+                    <th scope="col" class="text-center">Finish Task</th>
+                    <th scope="col" class="text-center">Delete Task</th>
+                    <th scope="col" class="text-center">Edit Task</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let userdata of userDataArray, let i = index"
+                    style="border-left: 2px solid black; border-right: 2px solid black;">
+                    <td scope="row" class="text-start" style="width: 350px; height: 60px;"
+                        [style.backgroundColor]="taskColor(userdata)">{{userdata.subject}}</td>
+                    <td class="text-center"
+                        style="font-weight: bold; width: 80px; height: 60px; border-left: 2px solid black; border-right: 2px solid black;"
+                        [style.backgroundColor]="priorityColor(userdata)">
+                        {{userdata.priority}}</td>
+                    <td class="text-center" style="width: 120px; height: 60px;"
+                        [style.backgroundColor]="taskColor(userdata)">{{userdata.start_date | date: 'dd MMM yyyy'}}</td>
+                    <td class="text-center" style="width: 120px; height: 60px;"
+                        [style.backgroundColor]="taskColor(userdata)">{{userdata.finish_date}}</td>
+                    <td class="text-center" style="width: 120px; height: 60px;"
+                        [style.backgroundColor]="taskColor(userdata)">{{userdata.department}}</td>
+                    <td class="text-center" style="width: 120px; height: 60px;"
+                        [style.backgroundColor]="taskColor(userdata)">{{userdata.assignedTo}}</td>
+                    <td class="text-center" style="width: 100px; height: 60px;"
+                        [style.backgroundColor]="taskColor(userdata)">{{userdata.status}}</td>
+                    <td class="text-center" style="width: 100px; height: 60px;"
+                        [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-success"
+                            style="width: 90px;" (click)="completeTask(i);"
+                            [disabled]="userdata.status === 'Completed'">Confirm</button></td>
+                    <td class="text-center" style="width: 100px; height: 60px;"
+                        [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-danger"
+                            style="width: 90px;" (click)="deleteTask(i)">Delete</button></td>
+                    <td class="text-center" style="width: 100px; height: 60px;"
+                        [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-primary"
+                            style="width: 90px;" (click)="editTask(i)">Edit</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div *ngIf="editTaskActive == true">
+
+    <h2 class="text-center" style="padding-top: 10px; margin-top: 80px">Edit Existing Task</h2>
+
+    <div style="display: flex; justify-content: center;">
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject</label>
+                <input [(ngModel)]="edit_subject" [ngModelOptions]="{standalone: true}" type="text" class="form-control"
+                    id="exampleFormControlInput1" placeholder="{{edit_subject}}" style="margin-top: 5px; width: 600px;">
+            </div>
+            <br>
+            <!-- <div class="form-group">
+                <label for="exampleFormControlTextarea1" style="font-weight: bold;">Task Description</label>
+                <textarea [(ngModel)]="taskDescription" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlTextarea1" rows="4"
+                    placeholder="Please insert a more detailed Task Description (if needed)"></textarea>
+            </div>
+            <br> -->
+            <div class="form-group">
+                <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Priority</label>
+                <select [(ngModel)]="edit_priority" [ngModelOptions]="{standalone: true}" class="form-control"
+                    id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;"
+                    placeholder="Please select a Task Priority">
+                    <option class="d-none">{{edit_priority}}</option>
+                    <option>LOW</option>
+                    <option>MED</option>
+                    <option>HIGH</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1" style="font-weight: bold;">Department</label>
+                <select [(ngModel)]="edit_department" [ngModelOptions]="{standalone: true}" class="form-control"
+                    id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;">
+                    <option class="d-none">{{edit_department}}</option>
+                    <option>Engineering</option>
+                    <option>Telecommunication</option>
+                    <option>Administrative</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To</label>
+                <input [(ngModel)]="edit_assignedTo" [ngModelOptions]="{standalone: true}" type="text"
+                    class="form-control" id="exampleFormControlInput1" placeholder="{{edit_assignedTo}}"
+                    style="margin-top: 5px; width: 600px;">
+            </div>
+
+            <br>
+        </form>
+    </div>
+
+    <div class="text-center">
+
+        <button type="button" class="btn btn-primary" style="font-size: x-large; margin-right: 10px;"
+            (click)="backToList()"><i class="bi bi-box-arrow-left"></i> Back to Tasks List</button>
+
+        <button type="button" class="btn btn-success" style="font-size: x-large; margin-left: 10px;"
+            (click)="editTaskFinal()"><i class="bi bi-clipboard2-plus"></i> Update Task</button>
+    </div>
+
+    <br>
+    <h4 class="text-center" style="font-weight: bold;"> {{editMessage}} </h4>
+
+    <br>
+
 </div>
