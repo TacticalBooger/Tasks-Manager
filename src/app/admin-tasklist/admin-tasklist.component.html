@@ -1,10 +1,9 @@
 <div>
 
     <app-admin-header></app-admin-header>
-    <br>
 
-    <div *ngIf="editTaskActive == false" style="margin-top: 70px;">
-
+    <div *ngIf="editTaskActive == false && additionalDetailsActive == false" style="margin-top: 70px;">
+        <br>
         <app-admin-tools></app-admin-tools>
 
         <table class="table table-hover" style="margin-top: 30px;">
@@ -24,34 +23,34 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let userdata of userDataArray, let i = index"
+                <tr *ngFor="let userdata of backendData"
                     style="border-left: 2px solid black; border-right: 2px solid black;">
-                    <td scope="row" class="text-start" style="width: 350px; height: 60px;"
-                        [style.backgroundColor]="taskColor(userdata)">{{userdata.subject}}</td>
+                    <td scope="row" class="text-start" style="width: 350px; height: 60px; cursor: pointer;"
+                        [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">{{userdata.subject}}</td>
                     <td class="text-center"
-                        style="font-weight: bold; width: 80px; height: 60px; border-left: 2px solid black; border-right: 2px solid black;"
-                        [style.backgroundColor]="priorityColor(userdata)">
+                        style="font-weight: bold; width: 80px; height: 60px; border-left: 2px solid black; border-right: 2px solid black; cursor: pointer;"
+                        [style.backgroundColor]="priorityColor(userdata)" (click)="additionalDetails(userdata.id)">
                         {{userdata.priority}}</td>
-                    <td class="text-center" style="width: 120px; height: 60px;"
-                        [style.backgroundColor]="taskColor(userdata)">{{userdata.start_date | date: 'dd MMM yyyy'}}</td>
-                    <td class="text-center" style="width: 120px; height: 60px;"
-                        [style.backgroundColor]="taskColor(userdata)">{{userdata.finish_date}}</td>
-                    <td class="text-center" style="width: 120px; height: 60px;"
-                        [style.backgroundColor]="taskColor(userdata)">{{userdata.department}}</td>
-                    <td class="text-center" style="width: 120px; height: 60px;"
-                        [style.backgroundColor]="taskColor(userdata)">{{userdata.assignedTo}}</td>
-                    <td class="text-center" style="width: 100px; height: 60px;"
-                        [style.backgroundColor]="taskColor(userdata)">{{userdata.status}}</td>
+                    <td class="text-center" style="width: 120px; height: 60px; border-right: 2px solid black; cursor: pointer;"
+                        [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">{{userdata.start_date}}</td>
+                    <td class="text-center" style="width: 120px; height: 60px; border-right: 2px solid black; cursor: pointer;"
+                        [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">{{userdata.finish_date}}</td>
+                    <td class="text-center" style="width: 120px; height: 60px; border-right: 2px solid black; cursor: pointer;"
+                        [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">{{userdata.department}}</td>
+                    <td class="text-center" style="width: 120px; height: 60px; border-right: 2px solid black; cursor: pointer;"
+                        [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">{{userdata.assignedTo}}</td>
+                    <td class="text-center" style="width: 100px; height: 60px; border-right: 2px solid black; cursor: pointer;"
+                        [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">{{userdata.status}}</td>
                     <td class="text-center" style="width: 100px; height: 60px;"
                         [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-success"
-                            style="width: 90px;" (click)="completeTask(i);"
+                            style="width: 90px;" (click)="completeTask(userdata.id);"
                             [disabled]="userdata.status === 'Completed'">Confirm</button></td>
                     <td class="text-center" style="width: 100px; height: 60px;"
                         [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-danger"
-                            style="width: 90px;" (click)="deleteTask(i)">Delete</button></td>
+                            style="width: 90px;" (click)="deleteTask(userdata.id)">Delete</button></td>
                     <td class="text-center" style="width: 100px; height: 60px;"
                         [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-primary"
-                            style="width: 90px;" (click)="editTask(i)">Edit</button></td>
+                            style="width: 90px;" (click)="editTask(userdata.id)">Edit</button></td>
                 </tr>
             </tbody>
         </table>
@@ -59,7 +58,7 @@
 </div>
 
 
-<div *ngIf="editTaskActive == true">
+<div *ngIf="editTaskActive == true && additionalDetailsActive == false">
 
     <h2 class="text-center" style="padding-top: 10px; margin-top: 80px">Edit Existing Task</h2>
 
@@ -71,12 +70,13 @@
                     id="exampleFormControlInput1" placeholder="{{edit_subject}}" style="margin-top: 5px; width: 600px;">
             </div>
             <br>
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <label for="exampleFormControlTextarea1" style="font-weight: bold;">Task Description</label>
-                <textarea [(ngModel)]="taskDescription" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlTextarea1" rows="4"
-                    placeholder="Please insert a more detailed Task Description (if needed)"></textarea>
+                <textarea [(ngModel)]="edit_additional_description" [ngModelOptions]="{standalone: true}"
+                    class="form-control" id="exampleFormControlTextarea1" rows="4"
+                    placeholder="{{edit_additional_description}}"></textarea>
             </div>
-            <br> -->
+            <br>
             <div class="form-group">
                 <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Priority</label>
                 <select [(ngModel)]="edit_priority" [ngModelOptions]="{standalone: true}" class="form-control"
@@ -86,6 +86,17 @@
                     <option>LOW</option>
                     <option>MED</option>
                     <option>HIGH</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Status</label>
+                <select [(ngModel)]="edit_status" [ngModelOptions]="{standalone: true}" class="form-control"
+                    id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;"
+                    placeholder="Please select a Task Status">
+                    <option class="d-none">{{edit_status}}</option>
+                    <option>Completed</option>
+                    <option>Undefined</option>
                 </select>
             </div>
             <br>
@@ -125,5 +136,15 @@
     <h4 class="text-center" style="font-weight: bold;"> {{editMessage}} </h4>
 
     <br>
+
+</div>
+
+<div *ngIf="editTaskActive == false && additionalDetailsActive == true">
+    <button type="button" class="btn btn-primary" style="font-size: x-large; margin-left: 10px; margin-top: 80px"
+    (click)="backToList()"><i class="bi bi-box-arrow-left"></i> Back to Tasks List</button>
+
+<h1 class="text-center">{{additional_subject}}</h1>
+<br>
+<h3 class="text-center">{{additional_additional_description}}</h3>
 
 </div>

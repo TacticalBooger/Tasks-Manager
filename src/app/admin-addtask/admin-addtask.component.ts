@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { timeout } from 'rxjs';
 import { UserDataService } from '../user-data.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-addtask',
@@ -10,41 +11,54 @@ import { FormsModule } from '@angular/forms';
 })
 export class AdminAddtaskComponent {
 
-  currentDate = new Date();
+  // currentDate = new Date();
 
-  constructor(private serviceUserData: UserDataService) {
+  constructor(private serviceUserData: UserDataService, private router: Router) {
 
   }
   addedMessage!: string
-  taskSubject!: string
-  taskDescription!: string
-  taskPriority!: string
-  taskDepartment!: string
-  taskAssignedTo!: string
+  add_taskSubject!: string
+  add_additional_description!: string
+  add_taskPriority!: string
+  add_taskDepartment!: string
+  add_taskAssignedTo!: string
+  backendData!: any
 
-  addTaskArray:any = {}
+  addTaskArray: any = {}
+
+  getTasks() {
+    this.serviceUserData.getData().subscribe((data: any) => {
+
+      this.backendData = data.userInfo;
+    })
+  }
 
   addTask() {
     this.addTaskArray =
-      {
-    subject: this.taskSubject,
-    priority: this.taskPriority,
-    start_date: this.currentDate,
-    finish_date: this.currentDate,
-    department: this.taskDepartment,
-    assignedTo: this.taskAssignedTo,
-    status: "HIGH"
-      }
+    {
+      subject: this.add_taskSubject,
+      priority: this.add_taskPriority,
+      additional_description: this.add_additional_description,
+      status: "Undefined",
+      start_date: "test",
+      finish_date: "test",
+      department: this.add_taskDepartment,
+      assignedTo: this.add_taskAssignedTo,
+    }
 
-    this.serviceUserData.userInfo.push(this.addTaskArray);
+    this.serviceUserData.servicePostTask(this.addTaskArray).subscribe((data: any) => {
+      this.getTasks();
+    })
 
     this.addedMessage = "Task Added!"
-    setTimeout (() => {
+    setTimeout(() => {
       this.addedMessage = "";
     }, 2500);
 
-    console.log(this.serviceUserData.userInfo)
+  }
 
+  admin_takeToMainTask() {
+    this.router.navigate(['/main'])
   }
 
 }

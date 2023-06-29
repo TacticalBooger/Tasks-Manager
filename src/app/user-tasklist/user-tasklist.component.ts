@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserDataService } from '../user-data.service';
 
 @Component({
   selector: 'app-user-tasklist',
@@ -8,10 +7,8 @@ import { UserDataService } from '../user-data.service';
 })
 export class UserTasklistComponent {
 
-  constructor (private userData: UserDataService) {
+  constructor () {
 
   }
-
-  userDataArray = this.userData.userInfo;
 
 }

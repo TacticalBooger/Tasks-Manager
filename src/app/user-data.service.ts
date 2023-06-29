@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
 @Injectable({
@@ -6,55 +8,26 @@ import { DatePipe } from '@angular/common';
 })
 export class UserDataService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   currentDate = new Date();
 
-  userInfo: any = [
-    {
-      subject: "Mark Group 2 Exams",
-      priority: "HIGH",
-      start_date: this.currentDate,
-      finish_date: "Test1",
-      department: "Test1",
-      assignedTo: "Test1",
-      status: "Undefined"
-    },
-    {
-      subject: "Beat up students",
-      priority: "HIGH",
-      start_date: this.currentDate,
-      finish_date: "Test2",
-      department: "Test2",
-      assignedTo: "Test2",
-      status: "Undefined"
-    },
-    {
-      subject: "Replace the coffee machine - 2nd floor",
-      priority: "MED",
-      start_date: this.currentDate,
-      finish_date: "Test3",
-      department: "Test3",
-      assignedTo: "Test3",
-      status: "Undefined"
-    },
-    {
-      subject: "Shaji nga ropt studentet!",
-      priority: "LOW",
-      start_date: this.currentDate,
-      finish_date: "Test4",
-      department: "Test4",
-      assignedTo: "Test4",
-      status: "Undefined"
-    },
-  ]
+  baseUrl = 'http://localhost:3000/db';
 
-  serviceDeleteTask(i:number) {
-    this.userInfo.splice(i, 1);
+  getData() {
+    return this.http.get('http://localhost:3000/db')
   }
 
-  serviceCompleteTask(i:number) {
-    this.userInfo[i].status = "Completed"
+  serviceDeleteTask(id: number): Observable<any> {
+    return this.http.delete('http://localhost:3000/userInfo/' + id)
+  }
+
+  servicePostTask(newItem: any): Observable<any> {
+    return this.http.post('http://localhost:3000/userInfo/', newItem)
+  }
+
+  servicePatchTask(id: number, updateItem: any): Observable<any> {
+    return this.http.patch('http://localhost:3000/userInfo/' + id, updateItem)
   }
 
 }
