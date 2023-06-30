@@ -19,7 +19,6 @@
         <div class="form-group">
             <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Priority</label>
             <select [(ngModel)]="add_taskPriority" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;" placeholder="Please select a Task Priority">
-                <option class="d-none">Please select a Task Priority</option>
                 <option>LOW</option>
                 <option>MED</option>
                 <option>HIGH</option>
@@ -29,11 +28,10 @@
         <div class="form-group">
             <label for="exampleFormControlSelect1" style="font-weight: bold;">Department</label>
             <select [(ngModel)]="add_taskDepartment" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;">
-                <option class="d-none">Please select a Department</option>
+                <option>Other</option>
                 <option>Engineering</option>
                 <option>Telecommunication</option>
                 <option>Administrative</option>
-                <option>Other</option>
             </select>
         </div>
         <br>
