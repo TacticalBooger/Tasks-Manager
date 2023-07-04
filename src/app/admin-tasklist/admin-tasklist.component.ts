@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../user-data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-tasklist',
@@ -20,13 +21,13 @@ export class AdminTasklistComponent implements OnInit {
     this.editTaskForm = this.fb.group({
       id: [''],
       subject: ['', Validators.required],
-      additional_description: ['', Validators.required],
+      additional_description: [''],
       priority: ['', Validators.required],
       status: ['', Validators.required],
       start_date: [''],
       finish_date: [''],
       department: ['', Validators.required],
-      assignedTo: ['', Validators.required]
+      assignedTo: ['']
     });
   }
 

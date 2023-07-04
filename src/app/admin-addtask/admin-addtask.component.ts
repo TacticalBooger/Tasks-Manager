@@ -23,7 +23,7 @@ export class AdminAddtaskComponent implements OnInit {
       subject: ['', Validators.required],
       additional_description: [''],
       priority: ['', Validators.required],
-      status: ['Pending'],
+      status: ['Pending', Validators.required],
       start_date: ['test'],
       finish_date: ['test'],
       department: ['', Validators.required],

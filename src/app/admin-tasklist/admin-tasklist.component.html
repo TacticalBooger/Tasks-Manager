@@ -26,7 +26,7 @@
                     <tr *ngFor="let userdata of backendData"
                         style="border-left: 1px solid black; border-right: 1px solid black;">
                         <td scope="row" class="text-start"
-                            style="width: 350px; height: 40px; cursor: pointer; font-weight: bold; text-decoration: underline;"
+                            style="width: 350px; height: 40px; cursor: pointer; font-weight: bold;"
                             [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
                             {{userdata.subject}}</td>
                         <td class="text-center"
@@ -78,24 +78,23 @@
     <div style="display: flex; justify-content: center;">
         <form [formGroup]="editTaskForm">
             <div class="form-group">
-                <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject</label>
-                <input formControlName="subject" type="text" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Please enter a Subject" style="margin-top: 5px; width: 600px;">
+                <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject (Max 50 Characters)</label>
+                <input maxlength="50" formControlName="subject" type="text" class="form-control" id="exampleFormControlInput1"
+                    placeholder="Please enter a Subject (REQUIRED)" style="margin-top: 5px; width: 600px;">
             </div>
             <br>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1" style="font-weight: bold;">Task Description</label>
-                <textarea formControlName="additional_description"
-                    class="form-control" id="exampleFormControlTextarea1" rows="4"
-                    placeholder="Please enter a Description (if needed)"></textarea>
+                <label for="exampleFormControlTextarea1" style="font-weight: bold;">Task Description (Max 500 Characters)</label>
+                <textarea maxlength="500" formControlName="additional_description"
+                    class="form-control" id="exampleFormControlTextarea1" rows="5"
+                    placeholder="Please enter a Description (Optional)"></textarea>
             </div>
             <br>
             <div class="form-group">
                 <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Priority</label>
                 <select formControlName="priority" class="form-control"
                     id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;"
-                    placeholder="Please select a Task Priority">
-                    <option class="d-none">{{edit_priority}}</option>
+                    placeholder="Please select a Task Priority (REQUIRED)">
                     <option>LOW</option>
                     <option>MED</option>
                     <option>HIGH</option>
@@ -106,9 +105,11 @@
                 <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Status</label>
                 <select formControlName="status" class="form-control"
                     id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;"
-                    placeholder="Please select a Task Status">
+                    placeholder="Please select a Task Status (REQUIRED)">
                     <option>Completed</option>
-                    <option>Undefined</option>
+                    <option>Ongoing</option>
+                    <option>Pending</option>
+                    <option>Overdue</option>
                 </select>
             </div>
             <br>
@@ -116,7 +117,7 @@
                 <label for="exampleFormControlSelect1" style="font-weight: bold;">Department</label>
                 <select formControlName="department" class="form-control"
                     id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;"
-                    placeholder="Please select a Department">
+                    placeholder="Please select a Department (REQUIRED)">
                     <option>Engineering</option>
                     <option>Telecommunication</option>
                     <option>Administrative</option>
@@ -127,7 +128,7 @@
             <div class="form-group">
                 <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To</label>
                 <input formControlName="assignedTo" type="text"
-                    class="form-control" id="exampleFormControlInput1" placeholder="Please enter who's assigned for this task (if needed)"
+                    class="form-control" id="exampleFormControlInput1" placeholder="Please enter who's assigned for this task (Optional)"
                     style="margin-top: 5px; width: 600px;">
             </div>
 
@@ -137,10 +138,12 @@
 
     <div class="text-center">
 
+        <h4 *ngIf="editTaskForm.invalid">Please complete all the required fields!</h4>
+        <br>
         <button type="button" class="btn btn-primary" style="font-size: x-large; margin-right: 10px;"
             (click)="backToList()"><i class="bi bi-box-arrow-left"></i> Back to Tasks List</button>
 
-        <button type="button" class="btn btn-success" style="font-size: x-large; margin-left: 10px;"
+        <button [disabled]="editTaskForm.invalid" type="button" class="btn btn-success" style="font-size: x-large; margin-left: 10px;"
             (click)="editTaskFinal()"><i class="bi bi-clipboard2-plus"></i> Update Task</button>
     </div>
 
@@ -160,7 +163,7 @@
         <div class="card-body">
             <h1 class="card-title text-center">{{additional_subject}}</h1>
             <hr>
-            <h5 class="card-text">{{additional_additional_description}}</h5>
+            <h6 class="card-text">{{additional_additional_description}}</h6>
             <hr>
             <h3 class="mt-4"><i class="bi bi-info-circle"></i> Status: {{additional_status}}</h3>
             <h3><i class="bi bi-exclamation-triangle"></i> Priority: {{additional_priority}}</h3>

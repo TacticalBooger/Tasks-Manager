@@ -1,23 +1,23 @@
 {
   "userInfo": [
     {
-      "subject": "Mark Group 2 Exams test",
+      "subject": "Mark Group 2 Exams",
       "additional_description": "long test description (very long)",
       "priority": "HIGH",
       "start_date": "test1",
       "finish_date": "Test1",
-      "department": "Test1",
+      "department": "Telecommunication",
       "assignedTo": "Test1",
       "status": "Overdue",
       "id": 0
     },
     {
       "subject": "Replace the coffee machine",
-      "additional_description": "long test description (very long)",
+      "additional_description": "This is a test description.",
       "priority": "LOW",
       "start_date": "test3",
       "finish_date": "Test3",
-      "department": "Test3",
+      "department": "Engineering",
       "assignedTo": "Test3",
       "status": "Ongoing",
       "id": 1
