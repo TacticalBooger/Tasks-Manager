@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../user-data.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-tasklist',
@@ -8,7 +9,7 @@ import { UserDataService } from '../user-data.service';
 })
 export class AdminTasklistComponent implements OnInit {
 
-  constructor(private serviceUserData: UserDataService) {
+  constructor(private fb: FormBuilder, private serviceUserData: UserDataService) {
 
   }
 
@@ -16,7 +17,20 @@ export class AdminTasklistComponent implements OnInit {
 
     this.getTasks()
 
+    this.editTaskForm = this.fb.group({
+      id: [''],
+      subject: ['', Validators.required],
+      additional_description: ['', Validators.required],
+      priority: ['', Validators.required],
+      status: ['', Validators.required],
+      start_date: [''],
+      finish_date: [''],
+      department: ['', Validators.required],
+      assignedTo: ['', Validators.required]
+    });
   }
+
+  editTaskForm!: FormGroup;
 
   edit_subject!: any
   edit_priority!: any
@@ -82,29 +96,18 @@ export class AdminTasklistComponent implements OnInit {
     this.editTaskActive = true;
     this.additionalDetailsActive = false;
     let task = this.backendData.find((task: any) => task.id === id);
+    
     if (task) {
-      this.edit_subject = task.subject;
-      this.edit_status = task.status;
-      this.edit_additional_description = task.additional_description;
-      this.edit_priority = task.priority;
-      this.edit_start_date = task.start_date;
-      this.edit_end_date = task.finish_date;
-      this.edit_assignedTo = task.assignedTo;
-      this.edit_department = task.department;
+      this.editTaskForm.setValue(task);
       this.selection = task.id;
     }
   }
 
   editTaskFinal() {
-    const updatedTask = this.backendData.find((task: any) => task.id === this.selection);
+    let updatedTask = this.backendData.find((task: any) => task.id === this.selection);
 
     if (updatedTask) {
-      updatedTask.subject = this.edit_subject;
-      updatedTask.priority = this.edit_priority;
-      updatedTask.additional_description = this.edit_additional_description;
-      updatedTask.status = this.edit_status;
-      updatedTask.assignedTo = this.edit_assignedTo;
-      updatedTask.department = this.edit_department;
+      updatedTask = this.editTaskForm.value;
 
       this.serviceUserData.servicePatchTask(this.selection, updatedTask).subscribe((data: any) => {
         this.getTasks();
@@ -127,8 +130,8 @@ export class AdminTasklistComponent implements OnInit {
     this.additionalDetailsActive = true
     this.editTaskActive = false
 
-      let task = this.backendData.find((task: any) => task.id === id);
-      if (task) {
+    let task = this.backendData.find((task: any) => task.id === id);
+    if (task) {
       this.additional_subject = task.subject;
       this.additional_status = task.status;
       this.additional_additional_description = task.additional_description;
@@ -137,20 +140,52 @@ export class AdminTasklistComponent implements OnInit {
       this.additional_end_date = task.finish_date;
       this.additional_assignedTo = task.assignedTo;
       this.additional_department = task.department;
-      }
     }
-
-  taskColor(userdata: any): string {
-    return userdata.status === 'Completed' ? '#38E54D' : //Green
-      userdata.status === 'Ongoing' ? '#FFD93D' : //Yellow
-        userdata.status === 'Pending' ? '#9BA4B5' : //Steel Blue
-          userdata.status === 'Overdue' ? '#FF0032' : '' // Red
   }
 
+  taskColor(userdata: any): string {
+    if (userdata.status === 'Completed') {
+      return '#CBFFA9'; // Green
+    } else if (userdata.status === 'Overdue') {
+      return '#FF9B9B'; // Red
+    } else if (userdata.status === 'Ongoing' || userdata.status === 'Pending') {
+      return '#EEEEEE';
+    } else {
+      return '';
+    }
+  }
+
+
   priorityColor(userdata: any): string {
-    return userdata.priority === 'HIGH' ? 'red' :
-      userdata.priority === 'MED' ? 'yellow' :
-        userdata.priority === 'LOW' ? 'grey' : ''
+    if (userdata.priority === 'HIGH' && userdata.status === 'Completed') {
+      return '#CBFFA9';
+    } else if (userdata.priority === 'MED' && userdata.status === 'Completed') {
+      return '#CBFFA9';
+    } else if (userdata.priority === 'LOW' && userdata.status === 'Completed') {
+      return '#CBFFA9';
+    }
+
+    else if (userdata.priority === 'HIGH' && userdata.status === 'Overdue') {
+      return '#FF9B9B';
+    }
+    else if (userdata.priority === 'MED' && userdata.status === 'Overdue') {
+      return '#FF9B9B';
+    } else if (userdata.priority === 'LOW' && userdata.status === 'Overdue') {
+      return '#FF9B9B';
+    }
+
+
+    else if (userdata.priority === 'HIGH' && (userdata.status !== 'Overdue' || userdata.status !== 'Completed')) {
+      return '#5A96E3';
+    }
+    else if (userdata.priority === 'MED' && (userdata.status !== 'Overdue' || userdata.status !== 'Completed')) {
+      return '#A1C2F1';
+    } else if (userdata.priority === 'LOW' && (userdata.status !== 'Overdue' || userdata.status !== 'Completed')) {
+      return '#C5DFF8';
+
+    } else {
+      return '';
+    }
   }
 
 }

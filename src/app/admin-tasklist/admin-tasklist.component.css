@@ -6,10 +6,10 @@
 
 td {
     transition: 0.4s;
-    border-bottom: 1.4px solid;
-    border-top: 1.4px solid;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
 }
 
 .btn {
-    border: 1.5px solid black;
+    border: 1.3px solid black;
 }

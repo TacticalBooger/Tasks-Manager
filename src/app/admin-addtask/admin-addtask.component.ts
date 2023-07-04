@@ -1,27 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { timeout } from 'rxjs';
 import { UserDataService } from '../user-data.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-addtask',
   templateUrl: './admin-addtask.component.html',
   styleUrls: ['./admin-addtask.component.css']
 })
-export class AdminAddtaskComponent {
+export class AdminAddtaskComponent implements OnInit {
 
   // currentDate = new Date();
 
-  constructor(private serviceUserData: UserDataService, private router: Router) {
+  constructor(private fb: FormBuilder, private serviceUserData: UserDataService, private router: Router) {
 
   }
+
+  ngOnInit() {
+    this.addTaskForm = this.fb.group({
+      subject: ['', Validators.required],
+      additional_description: [''],
+      priority: ['', Validators.required],
+      status: ['Pending'],
+      start_date: ['test'],
+      finish_date: ['test'],
+      department: ['', Validators.required],
+      assignedTo: ['']
+    });
+  }
+
+  addTaskForm!: FormGroup;
+
   addedMessage!: string
-  add_taskSubject!: string
-  add_additional_description!: string
-  add_taskPriority!: string
-  add_taskDepartment!: string
-  add_taskAssignedTo!: string
   backendData!: any
 
   addTaskArray: any = {}
@@ -34,19 +46,9 @@ export class AdminAddtaskComponent {
   }
 
   addTask() {
-    this.addTaskArray =
-    {
-      subject: this.add_taskSubject,
-      priority: this.add_taskPriority,
-      additional_description: this.add_additional_description,
-      status: "Undefined",
-      start_date: "test",
-      finish_date: "test",
-      department: this.add_taskDepartment,
-      assignedTo: this.add_taskAssignedTo,
-    }
-
-    this.serviceUserData.servicePostTask(this.addTaskArray).subscribe((data: any) => {
+    const addTask = this.addTaskForm.value
+    
+    this.serviceUserData.servicePostTask(addTask).subscribe((data: any) => {
       this.getTasks();
     })
 
