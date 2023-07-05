@@ -1,7 +1,5 @@
 <div>
-
     <app-admin-header></app-admin-header>
-
     <div *ngIf="editTaskActive == false && additionalDetailsActive == false" style="margin-top: 70px;">
         <br>
         <app-admin-tools></app-admin-tools>
@@ -34,11 +32,11 @@
                             [style.backgroundColor]="priorityColor(userdata)" (click)="additionalDetails(userdata.id)">
                             {{userdata.priority}}</td>
                         <td class="text-center"
-                            style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                            style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
                             [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
                             {{userdata.start_date}}</td>
                         <td class="text-center"
-                            style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                            style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
                             [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
                             {{userdata.finish_date}}</td>
                         <td class="text-center"
@@ -67,45 +65,69 @@
                 </tbody>
             </table>
         </div>
+        {{currentDate | date}}
     </div>
 </div>
 
+<!-- Main View of Tasks -->
+<!-- ---------------------------------------------------------------------------------------------------------- -->
+<!-- Edit Task View -->
 
 <div *ngIf="editTaskActive == true && additionalDetailsActive == false">
 
-    <h2 class="text-center" style="padding-top: 10px; margin-top: 80px">Edit Existing Task</h2>
+    <h1 class="text-center" style="padding-top: 10px; margin-top: 80px">Edit Existing Task</h1>
 
     <div style="display: flex; justify-content: center;">
         <form [formGroup]="editTaskForm">
             <div class="form-group">
-                <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject (Max 50 Characters)</label>
-                <input maxlength="50" formControlName="subject" type="text" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Please enter a Subject (REQUIRED)" style="margin-top: 5px; width: 600px;">
+                <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject (Max 50
+                    Characters)</label>
+                <input maxlength="50" formControlName="subject" type="text" class="form-control"
+                    id="exampleFormControlInput1" placeholder="Please enter a Subject (REQUIRED)"
+                    style="margin-top: 5px; width: 600px;">
             </div>
             <br>
+            <br>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1" style="font-weight: bold;">Task Description (Max 500 Characters)</label>
-                <textarea maxlength="500" formControlName="additional_description"
-                    class="form-control" id="exampleFormControlTextarea1" rows="5"
+                <label for="exampleFormControlTextarea1" style="font-weight: bold;">Task Description (Max 500
+                    Characters)</label>
+                <textarea maxlength="500" formControlName="additional_description" class="form-control"
+                    id="exampleFormControlTextarea1" rows="5"
                     placeholder="Please enter a Description (Optional)"></textarea>
             </div>
             <br>
+            <br>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1" style="font-weight: bold;">Start & Finish Dates</label>
+                <br>
+                <mat-form-field style="border: 1px solid lightgrey; border-radius: 7px;">
+                    <mat-label>Enter the Dates (REQUIRED)</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input formControlName="start_date" matStartDate placeholder="Start date" style="color: black;">
+                        <input formControlName="finish_date" matEndDate placeholder="End date" style="color: black;">
+                    </mat-date-range-input>
+                    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
+                </mat-form-field>
+            </div>
+            <br>
+            <br>
             <div class="form-group">
                 <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Priority</label>
-                <select formControlName="priority" class="form-control"
-                    id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;"
-                    placeholder="Please select a Task Priority (REQUIRED)">
+                <select formControlName="priority" class="form-control" id="exampleFormControlSelect1"
+                    style="margin-top: 5px; width: 600px;" placeholder="Please select a Task Priority (REQUIRED)">
                     <option>LOW</option>
                     <option>MED</option>
                     <option>HIGH</option>
                 </select>
             </div>
             <br>
+            <br>
             <div class="form-group">
                 <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Status</label>
-                <select formControlName="status" class="form-control"
-                    id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;"
-                    placeholder="Please select a Task Status (REQUIRED)">
+                <select formControlName="status" class="form-control" id="exampleFormControlSelect1"
+                    style="margin-top: 5px; width: 600px;" placeholder="Please select a Task Status (REQUIRED)">
                     <option>Completed</option>
                     <option>Ongoing</option>
                     <option>Pending</option>
@@ -113,11 +135,11 @@
                 </select>
             </div>
             <br>
+            <br>
             <div class="form-group">
                 <label for="exampleFormControlSelect1" style="font-weight: bold;">Department</label>
-                <select formControlName="department" class="form-control"
-                    id="exampleFormControlSelect1" style="margin-top: 5px; width: 600px;"
-                    placeholder="Please select a Department (REQUIRED)">
+                <select formControlName="department" class="form-control" id="exampleFormControlSelect1"
+                    style="margin-top: 5px; width: 600px;" placeholder="Please select a Department (REQUIRED)">
                     <option>Engineering</option>
                     <option>Telecommunication</option>
                     <option>Administrative</option>
@@ -125,10 +147,11 @@
                 </select>
             </div>
             <br>
+            <br>
             <div class="form-group">
-                <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To</label>
-                <input formControlName="assignedTo" type="text"
-                    class="form-control" id="exampleFormControlInput1" placeholder="Please enter who's assigned for this task (Optional)"
+                <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To (Max 50 Characters)</label>
+                <input maxlength="50" formControlName="assignedTo" type="text" class="form-control"
+                    id="exampleFormControlInput1" placeholder="Please enter who's assigned for this task (Optional)"
                     style="margin-top: 5px; width: 600px;">
             </div>
 
@@ -143,16 +166,18 @@
         <button type="button" class="btn btn-primary" style="font-size: x-large; margin-right: 10px;"
             (click)="backToList()"><i class="bi bi-box-arrow-left"></i> Back to Tasks List</button>
 
-        <button [disabled]="editTaskForm.invalid" type="button" class="btn btn-success" style="font-size: x-large; margin-left: 10px;"
-            (click)="editTaskFinal()"><i class="bi bi-clipboard2-plus"></i> Update Task</button>
+        <button [disabled]="editTaskForm.invalid" type="button" class="btn btn-success"
+            style="font-size: x-large; margin-left: 10px;" (click)="editTaskFinal()"><i
+                class="bi bi-clipboard2-plus"></i> Update Task</button>
     </div>
-
     <br>
     <h4 class="text-center" style="font-weight: bold;"> {{editMessage}} </h4>
-
     <br>
-
 </div>
+
+<!-- Edit Task View -->
+<!-- ---------------------------------------------------------------------------------------------------------- -->
+<!-- Additional Details View -->
 
 <div *ngIf="editTaskActive == false && additionalDetailsActive == true" class="p-4">
     <button type="button" class="btn btn-primary" style="font-size: x-large; margin-top: 70px" (click)="backToList()">
@@ -163,14 +188,16 @@
         <div class="card-body">
             <h1 class="card-title text-center">{{additional_subject}}</h1>
             <hr>
-            <h6 class="card-text">{{additional_additional_description}}</h6>
+            <h3 class="card-text">{{additional_additional_description}}</h3>
             <hr>
-            <h3 class="mt-4"><i class="bi bi-info-circle"></i> Status: {{additional_status}}</h3>
-            <h3><i class="bi bi-exclamation-triangle"></i> Priority: {{additional_priority}}</h3>
-            <h3><i class="bi bi-calendar3"></i> Start Date: {{additional_start_date}}</h3>
-            <h3><i class="bi bi-calendar3-event"></i> End Date: {{additional_end_date}}</h3>
-            <h3><i class="bi bi-person"></i> Assigned To: {{additional_assignedTo}}</h3>
-            <h3><i class="bi bi-building"></i> Department: {{additional_department}}</h3>
+            <h1 class="mt-4"><i class="bi bi-info-circle"></i> Status: {{additional_status}}</h1>
+            <h1><i class="bi bi-exclamation-triangle"></i> Priority: {{additional_priority}}</h1>
+            <h1><i class="bi bi-calendar3"></i> Start Date: {{additional_start_date}}</h1>
+            <h1><i class="bi bi-calendar3-event"></i> End Date: {{additional_end_date}}</h1>
+            <h1><i class="bi bi-building"></i> Department: {{additional_department}}</h1>
+            <h1><i class="bi bi-person"></i> Assigned To: {{additional_assignedTo}}</h1>
         </div>
     </div>
 </div>
+
+<app-admin-footer></app-admin-footer>

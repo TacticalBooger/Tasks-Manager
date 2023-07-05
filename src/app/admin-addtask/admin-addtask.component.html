@@ -1,20 +1,41 @@
 <app-admin-header></app-admin-header>
 
-<h2 class="text-center" style="padding-top: 10px; margin-top: 80px;">Add New Task</h2>
+<h1 class="text-center" style="padding-top: 10px; margin-top: 80px;">Add New Task</h1>
 
 <div style="display: flex; justify-content: center;">
     <form [formGroup]="addTaskForm">
         <div class="form-group">
             <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject (Max 50 Characters)</label>
-            <input maxlength="50" formControlName="subject" type="text" class="form-control" id="exampleFormControlInput1"
-                placeholder="Please insert a Task Subject (REQUIRED)" style="margin-top: 5px; width: 600px;">
+            <input maxlength="50" formControlName="subject" type="text" class="form-control"
+                id="exampleFormControlInput1" placeholder="Please insert a Task Subject (REQUIRED)"
+                style="margin-top: 5px; width: 600px;">
         </div>
         <br>
+        <br>
         <div class="form-group">
-            <label for="exampleFormControlTextarea1" style="font-weight: bold;">Task Description (Max 500 Characters)</label>
-            <textarea maxlength="500" formControlName="additional_description" class="form-control" id="exampleFormControlTextarea1"
-                rows="5" placeholder="Please insert a more detailed Task Description (Optional)"></textarea>
+            <label for="exampleFormControlTextarea1" style="font-weight: bold;">Task Description (Max 500
+                Characters)</label>
+            <textarea maxlength="500" formControlName="additional_description" class="form-control"
+                id="exampleFormControlTextarea1" rows="5"
+                placeholder="Please insert a more detailed Task Description (Optional)"></textarea>
         </div>
+        <br>
+        <br>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1" style="font-weight: bold;">Start & Finish Dates</label>
+            <br>
+            <mat-form-field style="border: 1px solid lightgrey; border-radius: 7px;">
+                <mat-label>Enter the Dates (REQUIRED)</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input class="form-control" formControlName="start_date" matStartDate placeholder="Start date" style="color: black;">
+                    <input class="form-control" formControlName="finish_date" matEndDate placeholder="End date" style="color: black;">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
+            </mat-form-field>
+        </div>
+        <br>
         <br>
         <div class="form-group">
             <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Priority</label>
@@ -26,6 +47,7 @@
                 <option>HIGH</option>
             </select>
         </div>
+        <br>
         <br>
         <div class="form-group">
             <label for="exampleFormControlSelect1" style="font-weight: bold;">Department</label>
@@ -39,9 +61,11 @@
             </select>
         </div>
         <br>
+        <br>
         <div class="form-group">
-            <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To</label>
-            <input formControlName="assignedTo" type="text" class="form-control" id="exampleFormControlInput1"
+            <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To (Max 50 Characters)</label>
+            <input maxlength="50" formControlName="assignedTo" type="text" class="form-control"
+                id="exampleFormControlInput1"
                 placeholder="Please insert who is specifically assigned to this task (Optional)"
                 style="margin-top: 5px; width: 600px;">
         </div>
@@ -51,8 +75,8 @@
 
 <div class="text-center">
 
-    <h4 *ngIf="addTaskForm.invalid">Please complete all the required fields!</h4>
     <br>
+    <h1 *ngIf="addTaskForm.invalid">Please complete all the required fields!</h1>
 
     <button type="button" class="btn btn-primary" style="font-size: x-large; margin-right: 10px;"
         (click)="admin_takeToMainTask()"><i class="bi bi-box-arrow-left"></i> Back to Tasks View</button>
@@ -63,4 +87,6 @@
 </div>
 
 <br>
-<h4 class="text-center" style="font-weight: bold;"> {{addedMessage}} </h4>
+<h1 class="text-center"> {{addedMessage}} </h1>
+
+<app-admin-footer></app-admin-footer>

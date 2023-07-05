@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../user-data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-tasklist',
@@ -10,27 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class AdminTasklistComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private serviceUserData: UserDataService) {
+  currentDate!: Date;
 
-  }
-
-  ngOnInit() {
-
-    this.getTasks()
-
-    this.editTaskForm = this.fb.group({
-      id: [''],
-      subject: ['', Validators.required],
-      additional_description: [''],
-      priority: ['', Validators.required],
-      status: ['', Validators.required],
-      start_date: [''],
-      finish_date: [''],
-      department: ['', Validators.required],
-      assignedTo: ['']
-    });
-  }
-
+  //initialized variables
   editTaskForm!: FormGroup;
 
   edit_subject!: any
@@ -57,14 +40,54 @@ export class AdminTasklistComponent implements OnInit {
   editTaskActive: boolean = false
   additionalDetailsActive: boolean = false
 
-  getTasks() {
+  constructor(private fb: FormBuilder, private serviceUserData: UserDataService, private datePipe: DatePipe) {
+
+  }
+
+  ngOnInit() {
+
+    this.getTasks() //Form Builder for editing tasks
+
+    this.editTaskForm = this.fb.group({
+      id: [''],
+      subject: ['', Validators.required],
+      additional_description: [''],
+      priority: ['', Validators.required],
+      status: ['', Validators.required],
+      start_date: ['', Validators.required],
+      finish_date: ['', Validators.required],
+      department: ['', Validators.required],
+      assignedTo: ['']
+    });
+
+    this.updateTaskStatus()
+  }
+
+  updateTaskStatus() {
+    const currentDate = new Date();
+    this.backendData.forEach((task: any) => {
+      const startDate = new Date(task.start_date);
+      const endDate = new Date(task.finish_date);
+
+      if (task.status !== 'Completed' && currentDate < startDate) {
+        task.status = 'Pending';
+      } else if (task.status !== 'Completed' && currentDate >= startDate && currentDate <= endDate) {
+        task.status = 'Ongoing';
+      } else if (task.status !== 'Completed' && currentDate > endDate) {
+        task.status = 'Overdue';
+      }
+    });
+  }
+
+  getTasks() { //grab tasks from backend
     this.serviceUserData.getData().subscribe((data: any) => {
 
       this.backendData = data.userInfo;
+      this.updateTaskStatus()
     })
   }
 
-  completeTask(id: number) {
+  completeTask(id: number) { //complete task when you press COMPLETE
     const val = confirm("Are you sure you want to complete this task?");
     if (val) {
       const completeItem = {
@@ -80,7 +103,7 @@ export class AdminTasklistComponent implements OnInit {
     }
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: number) { // delete task when you press DELETE
     const val = confirm("Are you sure you want to delete this task?");
     if (val) {
       const taskIndex = this.backendData.findIndex((task: any) => task.id === id);
@@ -93,19 +116,30 @@ export class AdminTasklistComponent implements OnInit {
     this.getTasks();
   }
 
-  editTask(id: number) {
+  editTask(id: number) { // runs when you hit EDIT on a task
     this.editTaskActive = true;
     this.additionalDetailsActive = false;
     let task = this.backendData.find((task: any) => task.id === id);
-    
+
     if (task) {
       this.editTaskForm.setValue(task);
       this.selection = task.id;
     }
   }
 
-  editTaskFinal() {
+  editTaskFinal() { //runs when you hit UPDATE TASK after clicking EDIT
     let updatedTask = this.backendData.find((task: any) => task.id === this.selection);
+
+    updatedTask.start_date = this.datePipe.transform(updatedTask.start_date, 'MMM d, yyyy');
+    updatedTask.finish_date = this.datePipe.transform(updatedTask.finish_date, 'MMM d, yyyy');
+
+    if(updatedTask.additional_description === '') {
+      updatedTask.additional_description = 'N/A'
+    }
+
+    if(updatedTask.assignedTo === '') {
+      updatedTask.assignedTo = 'N/A'
+    }
 
     if (updatedTask) {
       updatedTask = this.editTaskForm.value;
@@ -121,13 +155,13 @@ export class AdminTasklistComponent implements OnInit {
     }
   }
 
-  backToList() {
+  backToList() { //Simple button to go back to main
     this.editTaskActive = false
     this.additionalDetailsActive = false
     this.getTasks();
   }
 
-  additionalDetails(id: number) {
+  additionalDetails(id: number) { //Runs when you click on any task for additional info
     this.additionalDetailsActive = true
     this.editTaskActive = false
 
@@ -144,7 +178,7 @@ export class AdminTasklistComponent implements OnInit {
     }
   }
 
-  taskColor(userdata: any): string {
+  taskColor(userdata: any): string { //colors the entire task row
     if (userdata.status === 'Completed') {
       return '#CBFFA9'; // Green
     } else if (userdata.status === 'Overdue') {
@@ -157,7 +191,7 @@ export class AdminTasklistComponent implements OnInit {
   }
 
 
-  priorityColor(userdata: any): string {
+  priorityColor(userdata: any): string { //colors the PRIORITY section only
     if (userdata.priority === 'HIGH' && userdata.status === 'Completed') {
       return '#CBFFA9';
     } else if (userdata.priority === 'MED' && userdata.status === 'Completed') {
