@@ -19,8 +19,8 @@ export class AdminAddtaskComponent implements OnInit {
   // currentDate = new Date();
 
   constructor(private fb: FormBuilder,
-    private serviceUserData:UserDataService, 
-    private router: Router, 
+    private serviceUserData: UserDataService,
+    private router: Router,
     private datePipe: DatePipe) {
 
   }
@@ -59,11 +59,11 @@ export class AdminAddtaskComponent implements OnInit {
     addTask.start_date = this.datePipe.transform(addTask.start_date, 'MMM d, yyyy');
     addTask.finish_date = this.datePipe.transform(addTask.finish_date, 'MMM d, yyyy');
 
-    if(addTask.additional_description === '') {
+    if (addTask.additional_description === '') {
       addTask.additional_description = 'N/A'
     }
 
-    if(addTask.assignedTo === '') {
+    if (addTask.assignedTo === '') {
       addTask.assignedTo = 'N/A'
     }
 

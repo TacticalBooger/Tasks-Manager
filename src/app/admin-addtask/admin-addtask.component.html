@@ -25,12 +25,12 @@
             <label for="exampleFormControlTextarea1" style="font-weight: bold;">Start & Finish Dates</label>
             <br>
             <mat-form-field style="border: 1px solid lightgrey; border-radius: 7px;">
-                <mat-label>Enter the Dates (REQUIRED)</mat-label>
+                <mat-label>Enter Dates (REQUIRED)</mat-label>
                 <mat-date-range-input [rangePicker]="picker">
-                    <input class="form-control" formControlName="start_date" matStartDate placeholder="Start date" style="color: black;">
-                    <input class="form-control" formControlName="finish_date" matEndDate placeholder="End date" style="color: black;">
+                    <input class="form-control" formControlName="start_date" matStartDate placeholder="Start Date" style="color: black;" readonly>
+                    <input class="form-control" formControlName="finish_date" matEndDate placeholder="Finish Date" style="color: black;" readonly>
                 </mat-date-range-input>
-                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
             </mat-form-field>
@@ -87,6 +87,4 @@
 </div>
 
 <br>
-<h1 class="text-center"> {{addedMessage}} </h1>
-
-<app-admin-footer></app-admin-footer>
+<h1 class="text-center" style="padding-bottom: 50px;"> {{addedMessage}} </h1>

@@ -19,6 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AdminFooterComponent } from './admin-footer/admin-footer.component';
+import { AbousUsComponent } from './abous-us/abous-us.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AdminFooterComponent } from './admin-footer/admin-footer.component';
     AdminHeaderComponent,
     AdminToolsComponent,
     AdminAddtaskComponent,
-    AdminFooterComponent
+    AdminFooterComponent,
+    AbousUsComponent
   ],
   imports: [
     BrowserModule,

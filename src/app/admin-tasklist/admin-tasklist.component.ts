@@ -72,7 +72,7 @@ export class AdminTasklistComponent implements OnInit {
       if (task.status !== 'Completed' && currentDate < startDate) {
         task.status = 'Pending';
       } else if (task.status !== 'Completed' && currentDate >= startDate && currentDate <= endDate) {
-        task.status = 'Ongoing';
+        task.status = 'In Progress';
       } else if (task.status !== 'Completed' && currentDate > endDate) {
         task.status = 'Overdue';
       }
@@ -130,6 +130,9 @@ export class AdminTasklistComponent implements OnInit {
   editTaskFinal() { //runs when you hit UPDATE TASK after clicking EDIT
     let updatedTask = this.backendData.find((task: any) => task.id === this.selection);
 
+    if (updatedTask) {
+      updatedTask = this.editTaskForm.value;
+
     updatedTask.start_date = this.datePipe.transform(updatedTask.start_date, 'MMM d, yyyy');
     updatedTask.finish_date = this.datePipe.transform(updatedTask.finish_date, 'MMM d, yyyy');
 
@@ -140,9 +143,6 @@ export class AdminTasklistComponent implements OnInit {
     if(updatedTask.assignedTo === '') {
       updatedTask.assignedTo = 'N/A'
     }
-
-    if (updatedTask) {
-      updatedTask = this.editTaskForm.value;
 
       this.serviceUserData.servicePatchTask(this.selection, updatedTask).subscribe((data: any) => {
         this.getTasks();
@@ -183,7 +183,7 @@ export class AdminTasklistComponent implements OnInit {
       return '#CBFFA9'; // Green
     } else if (userdata.status === 'Overdue') {
       return '#FF9B9B'; // Red
-    } else if (userdata.status === 'Ongoing' || userdata.status === 'Pending') {
+    } else if (userdata.status === 'In Progress' || userdata.status === 'Pending') {
       return '#EEEEEE';
     } else {
       return '';

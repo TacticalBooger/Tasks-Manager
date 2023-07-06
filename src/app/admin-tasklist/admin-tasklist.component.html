@@ -101,12 +101,12 @@
                 <label for="exampleFormControlTextarea1" style="font-weight: bold;">Start & Finish Dates</label>
                 <br>
                 <mat-form-field style="border: 1px solid lightgrey; border-radius: 7px;">
-                    <mat-label>Enter the Dates (REQUIRED)</mat-label>
+                    <mat-label>Enter Dates (REQUIRED)</mat-label>
                     <mat-date-range-input [rangePicker]="picker">
-                        <input formControlName="start_date" matStartDate placeholder="Start date" style="color: black;">
-                        <input formControlName="finish_date" matEndDate placeholder="End date" style="color: black;">
+                        <input formControlName="start_date" matStartDate placeholder="Start Date" style="color: black;" readonly>
+                        <input formControlName="finish_date" matEndDate placeholder="Finish Date" style="color: black;" readonly>
                     </mat-date-range-input>
-                    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
                 </mat-form-field>
@@ -129,7 +129,7 @@
                 <select formControlName="status" class="form-control" id="exampleFormControlSelect1"
                     style="margin-top: 5px; width: 600px;" placeholder="Please select a Task Status (REQUIRED)">
                     <option>Completed</option>
-                    <option>Ongoing</option>
+                    <option>In Progress</option>
                     <option>Pending</option>
                     <option>Overdue</option>
                 </select>
@@ -190,14 +190,16 @@
             <hr>
             <h3 class="card-text">{{additional_additional_description}}</h3>
             <hr>
-            <h1 class="mt-4"><i class="bi bi-info-circle"></i> Status: {{additional_status}}</h1>
-            <h1><i class="bi bi-exclamation-triangle"></i> Priority: {{additional_priority}}</h1>
-            <h1><i class="bi bi-calendar3"></i> Start Date: {{additional_start_date}}</h1>
-            <h1><i class="bi bi-calendar3-event"></i> End Date: {{additional_end_date}}</h1>
-            <h1><i class="bi bi-building"></i> Department: {{additional_department}}</h1>
-            <h1><i class="bi bi-person"></i> Assigned To: {{additional_assignedTo}}</h1>
+            <h1 class="mt-4"><i class="bi bi-info-circle"></i> Status: <span style="font-weight: bold; text-decoration: underline;">{{additional_status}}</span></h1>
+            <h1><i class="bi bi-exclamation-triangle"></i> Priority: <span style="font-weight: bold; text-decoration: underline;">{{additional_priority}}</span></h1>
+            <h1><i class="bi bi-calendar3"></i> Start Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_start_date}}</span></h1>
+            <h1><i class="bi bi-calendar3-event"></i> End Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_end_date}}</span></h1>
+            <h1><i class="bi bi-building"></i> Department: <span style="font-weight: bold; text-decoration: underline;">{{additional_department}}</span></h1>
+            <h1><i class="bi bi-person"></i> Assigned To: <span style="font-weight: bold; text-decoration: underline;">{{additional_assignedTo}}</span></h1>
         </div>
     </div>
 </div>
-
+<br>
+<div *ngIf="editTaskActive == false && additionalDetailsActive == false">
 <app-admin-footer></app-admin-footer>
+</div>
