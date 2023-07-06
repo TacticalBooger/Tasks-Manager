@@ -75,8 +75,8 @@
 
 <div *ngIf="editTaskActive == true && additionalDetailsActive == false">
 
-    <h1 class="text-center" style="padding-top: 10px; margin-top: 80px">Edit Existing Task</h1>
-
+    <h1 class="text-center" style="padding-top: 10px; margin-top: 80px; font-weight: bold;">Edit Existing Task</h1>
+    <br>
     <div style="display: flex; justify-content: center;">
         <form [formGroup]="editTaskForm">
             <div class="form-group">
@@ -160,9 +160,8 @@
     </div>
 
     <div class="text-center">
-
-        <h4 *ngIf="editTaskForm.invalid">Please complete all the required fields!</h4>
         <br>
+        <h1 *ngIf="editTaskForm.invalid" style="font-weight: bold;">Please complete all the required fields!</h1>
         <button type="button" class="btn btn-primary" style="font-size: x-large; margin-right: 10px;"
             (click)="backToList()"><i class="bi bi-box-arrow-left"></i> Back to Tasks List</button>
 
@@ -171,7 +170,7 @@
                 class="bi bi-clipboard2-plus"></i> Update Task</button>
     </div>
     <br>
-    <h4 class="text-center" style="font-weight: bold;"> {{editMessage}} </h4>
+    <h1 class="text-center" style="font-weight: bold;"> {{editMessage}} </h1>
     <br>
 </div>
 
@@ -184,7 +183,7 @@
         <i class="bi bi-box-arrow-left"></i> Back to Tasks List
     </button>
 
-    <div class="card mx-auto" style="max-width: 600px; margin-top: 20px;">
+    <div class="card mx-auto" style="max-width: 600px; margin-top: 20px; margin-bottom: 20px;">
         <div class="card-body">
             <h1 class="card-title text-center">{{additional_subject}}</h1>
             <hr>
@@ -193,7 +192,7 @@
             <h1 class="mt-4"><i class="bi bi-info-circle"></i> Status: <span style="font-weight: bold; text-decoration: underline;">{{additional_status}}</span></h1>
             <h1><i class="bi bi-exclamation-triangle"></i> Priority: <span style="font-weight: bold; text-decoration: underline;">{{additional_priority}}</span></h1>
             <h1><i class="bi bi-calendar3"></i> Start Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_start_date}}</span></h1>
-            <h1><i class="bi bi-calendar3-event"></i> End Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_end_date}}</span></h1>
+            <h1><i class="bi bi-calendar3-event"></i> Finish Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_end_date}}</span></h1>
             <h1><i class="bi bi-building"></i> Department: <span style="font-weight: bold; text-decoration: underline;">{{additional_department}}</span></h1>
             <h1><i class="bi bi-person"></i> Assigned To: <span style="font-weight: bold; text-decoration: underline;">{{additional_assignedTo}}</span></h1>
         </div>
