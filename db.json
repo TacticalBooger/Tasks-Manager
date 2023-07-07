@@ -6,7 +6,7 @@
       "priority": "HIGH",
       "start_date": "Jul 3, 2023",
       "finish_date": "Jul 27, 2023",
-      "department": "Telecommunication",
+      "department": "Telecoms",
       "assignedTo": "Test1",
       "status": "Pending",
       "id": 0
@@ -28,7 +28,7 @@
       "priority": "HIGH",
       "start_date": "Jul 2, 2023",
       "finish_date": "Jul 4, 2023",
-      "department": "Telecommunication",
+      "department": "Telecoms",
       "assignedTo": "test person",
       "status": "Pending",
       "id": 2
@@ -95,7 +95,7 @@
       "status": "Completed",
       "start_date": "Jul 5, 2023",
       "finish_date": "Jul 27, 2023",
-      "department": "Telecommunication",
+      "department": "Telecoms",
       "assignedTo": "test",
       "id": 9
     },
@@ -139,7 +139,7 @@
       "status": "",
       "start_date": "Jul 2, 2023",
       "finish_date": "Jul 4, 2023",
-      "department": "Telecommunication",
+      "department": "Telecoms",
       "assignedTo": "N/A",
       "id": 15
     },

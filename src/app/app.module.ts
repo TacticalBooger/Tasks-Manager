@@ -20,6 +20,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AdminFooterComponent } from './admin-footer/admin-footer.component';
 import { AbousUsComponent } from './abous-us/abous-us.component';
+import { UserFooterComponent } from './user-footer/user-footer.component';
+import { AboutUsUserComponent } from './about-us-user/about-us-user.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { AbousUsComponent } from './abous-us/abous-us.component';
     AdminToolsComponent,
     AdminAddtaskComponent,
     AdminFooterComponent,
-    AbousUsComponent
+    AbousUsComponent,
+    UserFooterComponent,
+    AboutUsUserComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,89 @@
+<div>
+    <app-user-header></app-user-header>
+    <div *ngIf="additionalDetailsActive == false" style="margin-top: 70px;">
+        <br>
+        <div style="margin: 0 auto; max-width: 1220px;">
+            <table class="table table-hover" style="margin-top: 30px;">
+                <thead style="border-bottom: 1px;">
+                    <tr>
+                        <th scope="col" class="text-center">Task Subject</th>
+                        <th scope="col" class="text-center">Priority</th>
+                        <th scope="col" class="text-center">Start Date</th>
+                        <th scope="col" class="text-center">Finish Date</th>
+                        <th scope="col" class="text-center">Department</th>
+                        <th scope="col" class="text-center">Assigned To</th>
+                        <th scope="col" class="text-center">Status</th>
+                        <th scope="col" class="text-center">Finish Task</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let userdata of backendData"
+                        style="border-left: 1px solid black; border-right: 1px solid black;">
+                        <td scope="row" class="text-start"
+                            style="width: 300px; height: 40px; cursor: pointer; font-weight: bold;"
+                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                            {{userdata.subject}}</td>
+                        <td class="text-center"
+                            style="font-weight: bold; width: 80px; height: 40px; border-left: 1px solid black; border-right: 1px solid black; cursor: pointer;"
+                            [style.backgroundColor]="priorityColor(userdata)" (click)="additionalDetails(userdata.id)">
+                            {{userdata.priority}}</td>
+                        <td class="text-center"
+                            style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                            {{userdata.start_date}}</td>
+                        <td class="text-center"
+                            style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                            {{userdata.finish_date}}</td>
+                        <td class="text-center"
+                            style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                            {{userdata.department}}</td>
+                        <td class="text-center"
+                            style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                            {{userdata.assignedTo}}</td>
+                        <td class="text-center"
+                            style="width: 100px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                            {{userdata.status}}</td>
+                        <td class="text-center" style="width: 100px; height: 40px;"
+                            [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-success"
+                                style="width: 90px;" (click)="completeTask(userdata.id);"
+                                [disabled]="userdata.status === 'Completed'">Confirm</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Main Task View -->
+<!-- ---------------------------------------------------------------------------------------------------------- -->
+<!-- Additional Details View -->
+
+<div *ngIf="additionalDetailsActive == true" class="p-4">
+    <button type="button" class="btn btn-primary" style="font-size: x-large; margin-top: 70px" (click)="backToList()">
+        <i class="bi bi-box-arrow-left"></i> Back to Tasks List
+    </button>
+
+    <div class="card mx-auto" style="max-width: 600px; margin-top: 20px; margin-bottom: 20px;">
+        <div class="card-body">
+            <h1 class="card-title text-center">{{additional_subject}}</h1>
+            <hr>
+            <h3 class="card-text">{{additional_additional_description}}</h3>
+            <hr>
+            <h1 class="mt-4"><i class="bi bi-info-circle"></i> Status: <span style="font-weight: bold; text-decoration: underline;">{{additional_status}}</span></h1>
+            <h1><i class="bi bi-exclamation-triangle"></i> Priority: <span style="font-weight: bold; text-decoration: underline;">{{additional_priority}}</span></h1>
+            <h1><i class="bi bi-calendar3"></i> Start Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_start_date}}</span></h1>
+            <h1><i class="bi bi-calendar3-event"></i> Finish Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_end_date}}</span></h1>
+            <h1><i class="bi bi-building"></i> Department: <span style="font-weight: bold; text-decoration: underline;">{{additional_department}}</span></h1>
+            <h1><i class="bi bi-person"></i> Assigned To: <span style="font-weight: bold; text-decoration: underline;">{{additional_assignedTo}}</span></h1>
+        </div>
+    </div>
+</div>
+<br>
+<div *ngIf="additionalDetailsActive == false">
+<app-user-footer></app-user-footer>
+</div>
