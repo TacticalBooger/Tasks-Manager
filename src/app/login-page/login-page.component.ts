@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserDataService } from '../user-data.service';
 
 @Component({
   selector: 'app-login-page',
@@ -9,8 +11,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginPageComponent implements OnInit {
 
   loginForm!: FormGroup;
+  loginMessage!: any;
+  loginMessage2!: any;
 
-  constructor (private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router, private serviceUserData: UserDataService) {
 
   }
 
@@ -19,6 +23,30 @@ export class LoginPageComponent implements OnInit {
       email: ['', Validators.required, Validators.email],
       password: ['', Validators.required]
     });
+  }
+
+  loginTest() {
+    // if(this.loginForm.value.email === "testemail" && this.loginForm.value.password === "1234")
+    // this.router.navigate(["/main"]);
+    // else {
+    //   this.loginMessage = "The Login Credentials are incorrect! Please try again."
+    //   setTimeout(() => {
+    //     this.loginMessage = "";
+    //   }, 3000);
+    // }
+    this.serviceUserData.signIn({
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    }).subscribe(() => {
+      this.router.navigate(["/main"]);
+    }, (error: any) => {
+      this.loginMessage = "The Login Credentials are incorrect! Please try again."
+      this.loginMessage2 = "ERROR MESSAGE: " + error;
+      setTimeout(() => {
+        this.loginMessage = "";
+        this.loginMessage2 = "";
+      }, 5000);
+    })
   }
 
 }

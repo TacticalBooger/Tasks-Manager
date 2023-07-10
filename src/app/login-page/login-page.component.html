@@ -27,8 +27,10 @@
                                 enter your Password.</span>
                         </div>
 
-                        <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block" style="margin-top: 35px;">Submit</button>
+                        <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block" style="margin-top: 35px;" (click)="loginTest()">Submit</button>
                     </form>
+                    <h2>{{loginMessage}}</h2>
+                    <h4>{{loginMessage2}}</h4>
 
                 </div>
             </div>

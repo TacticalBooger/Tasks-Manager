@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { from, Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
 @Injectable({
@@ -8,7 +9,8 @@ import { DatePipe } from '@angular/common';
 })
 export class UserDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private auth: AngularFireAuth) { }
 
   currentDate = new Date();
 
@@ -30,4 +32,13 @@ export class UserDataService {
     return this.http.patch('http://localhost:3000/userInfo/' + id, updateItem)
   }
 
+  signIn(params: SignIn): Observable<any> {
+    return from(this.auth.signInWithEmailAndPassword(params.email, params.password))
+  }
+
+}
+
+type SignIn = {
+  email: string;
+  password: string;
 }

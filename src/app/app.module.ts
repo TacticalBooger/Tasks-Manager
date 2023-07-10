@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,7 +51,18 @@ import { LoginPageComponent } from './login-page/login-page.component';
     BrowserAnimationsModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    AngularFireAuthModule,
+
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyAs-uZlk53De-jXqpagPcyS2CvCc4rgLPA",
+      authDomain: "tasks-management-e19fd.firebaseapp.com",
+      projectId: "tasks-management-e19fd",
+      storageBucket: "tasks-management-e19fd.appspot.com",
+      messagingSenderId: "1085180102537",
+      appId: "1:1085180102537:web:1dee0c49e96c0970f34358",
+      measurementId: "G-9BE7EKETD0"
+    })
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -4,11 +4,11 @@
       "subject": "Mark Group 2 Exams",
       "additional_description": "long test description (very long)",
       "priority": "HIGH",
-      "start_date": "Jul 3, 2023",
-      "finish_date": "Jul 27, 2023",
+      "start_date": "Jul 6, 2023",
+      "finish_date": "Jul 13, 2023",
       "department": "Telecoms",
       "assignedTo": "Test1",
-      "status": "Pending",
+      "status": "In Progress",
       "id": 0
     },
     {
