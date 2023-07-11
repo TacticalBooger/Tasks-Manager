@@ -31,6 +31,7 @@ export class LoginPageComponent implements OnInit {
       password: this.loginForm.value.password
     }).subscribe((next: any) => {
       console.log(next);
+      localStorage.setItem('token', (next.user._delegate.accessToken));
       this.router.navigate(["/main"]);
     }, (error: any) => {
       this.loginMessage = "The Login Credentials are incorrect! Please try again.";

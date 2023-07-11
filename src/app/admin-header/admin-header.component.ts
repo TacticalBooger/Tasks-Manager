@@ -13,6 +13,7 @@ export class AdminHeaderComponent {
   }
   
   logOut(){
+    localStorage.setItem('token', '');
     this.router.navigate(['/login_page'])
   }
 

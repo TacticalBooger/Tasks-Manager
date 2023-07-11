@@ -9,14 +9,14 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthGuard } from './authguard.guard';
 
 const routes: Routes = [
-  {path: 'main', component:AdminTasklistComponent, canActivate:[AuthGuard]},
   {path: 'login_page', component:LoginPageComponent },
-  {path: 'admin_addTask', component:AdminAddtaskComponent},
-  {path: 'about_us', component:AbousUsComponent},
+  {path: 'main', component:AdminTasklistComponent, canActivate:[AuthGuard]},
+  {path: 'admin_addTask', component:AdminAddtaskComponent, canActivate:[AuthGuard]},
+  {path: 'about_us', component:AbousUsComponent, canActivate:[AuthGuard]},
   {path: 'about_us_user', component:AboutUsUserComponent},
   {path: 'user_main', component:UserTasklistComponent },
-  {path: '', redirectTo: 'main', pathMatch: 'full'},
-  {path: '**', redirectTo: 'main', pathMatch: 'full'},
+  {path: '', redirectTo: 'login_page', pathMatch: 'full'},
+  {path: '**', redirectTo: 'login_page', pathMatch: 'full'},
 ];
 
 @NgModule({
