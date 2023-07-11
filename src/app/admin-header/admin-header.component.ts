@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-header',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-header.component.css']
 })
 export class AdminHeaderComponent {
+
+  constructor(private router: Router) {
+    
+  }
+  
+  logOut(){
+    this.router.navigate(['/login_page'])
+  }
 
 }

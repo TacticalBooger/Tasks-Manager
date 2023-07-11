@@ -36,6 +36,11 @@ export class UserDataService {
     return from(this.auth.signInWithEmailAndPassword(params.email, params.password))
   }
 
+  isLoggedIn() {
+
+    return !!localStorage.getItem('token');
+  }
+  
 }
 
 type SignIn = {

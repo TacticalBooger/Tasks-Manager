@@ -6,9 +6,10 @@ import { AbousUsComponent } from './abous-us/abous-us.component';
 import { UserTasklistComponent } from './user-tasklist/user-tasklist.component';
 import { AboutUsUserComponent } from './about-us-user/about-us-user.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthGuard } from './authguard.guard';
 
 const routes: Routes = [
-  {path: 'main', component:AdminTasklistComponent},
+  {path: 'main', component:AdminTasklistComponent, canActivate:[AuthGuard]},
   {path: 'login_page', component:LoginPageComponent },
   {path: 'admin_addTask', component:AdminAddtaskComponent},
   {path: 'about_us', component:AbousUsComponent},

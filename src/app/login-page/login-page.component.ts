@@ -26,21 +26,14 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginTest() {
-    // if(this.loginForm.value.email === "testemail" && this.loginForm.value.password === "1234")
-    // this.router.navigate(["/main"]);
-    // else {
-    //   this.loginMessage = "The Login Credentials are incorrect! Please try again."
-    //   setTimeout(() => {
-    //     this.loginMessage = "";
-    //   }, 3000);
-    // }
     this.serviceUserData.signIn({
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
-    }).subscribe(() => {
+    }).subscribe((next: any) => {
+      console.log(next);
       this.router.navigate(["/main"]);
     }, (error: any) => {
-      this.loginMessage = "The Login Credentials are incorrect! Please try again."
+      this.loginMessage = "The Login Credentials are incorrect! Please try again.";
       this.loginMessage2 = "ERROR MESSAGE: " + error;
       setTimeout(() => {
         this.loginMessage = "";
