@@ -2,6 +2,7 @@
     <app-admin-header></app-admin-header>
     <div *ngIf="editTaskActive == false && additionalDetailsActive == false" style="margin-top: 70px;">
         <br>
+        <br>
         <app-admin-tools></app-admin-tools>
         <div style="margin: 0 auto; max-width: 1220px;">
             <table class="table table-hover" style="margin-top: 30px;">
@@ -79,9 +80,9 @@
     <div style="display: flex; justify-content: center;">
         <form [formGroup]="editTaskForm">
             <div class="form-group">
-                <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject (Max 50
+                <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject (Max 55
                     Characters)</label>
-                <input maxlength="50" formControlName="subject" type="text" class="form-control"
+                <input maxlength="55" formControlName="subject" type="text" class="form-control"
                     id="exampleFormControlInput1" placeholder="Please enter a Subject (REQUIRED)"
                     style="margin-top: 5px; width: 600px;">
             </div>
@@ -148,8 +149,8 @@
             <br>
             <br>
             <div class="form-group">
-                <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To (Max 50 Characters)</label>
-                <input maxlength="50" formControlName="assignedTo" type="text" class="form-control"
+                <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To (Max 20 Characters)</label>
+                <input maxlength="20" formControlName="assignedTo" type="text" class="form-control"
                     id="exampleFormControlInput1" placeholder="Please enter who's assigned for this task (Optional)"
                     style="margin-top: 5px; width: 600px;">
             </div>
@@ -194,6 +195,7 @@
             <h1><i class="bi bi-calendar3-event"></i> Finish Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_end_date}}</span></h1>
             <h1><i class="bi bi-building"></i> Department: <span style="font-weight: bold; text-decoration: underline;">{{additional_department}}</span></h1>
             <h1><i class="bi bi-person"></i> Assigned To: <span style="font-weight: bold; text-decoration: underline;">{{additional_assignedTo}}</span></h1>
+            <h1><i class="bi bi-check-circle"></i> Completed By: <span style="font-weight: bold; text-decoration: underline;">{{additional_completed_by}}</span></h1>
         </div>
     </div>
 </div>

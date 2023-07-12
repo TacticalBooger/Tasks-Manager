@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 export class UserTasklistComponent implements OnInit {
 
   currentDate!: Date;
+  personLoggedIn = this.serviceUserData.personLoggedIn
 
   //initialized variables
 
@@ -23,6 +24,7 @@ export class UserTasklistComponent implements OnInit {
   additional_assignedTo!: any
   additional_department!: any
   additional_additional_description!: any
+  additional_completed_by!: any
 
   backendData!: any;
   editMessage = ""
@@ -36,7 +38,7 @@ export class UserTasklistComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getTasks() //Form Builder for editing tasks
+    this.getTasks()
 
     this.updateTaskStatus()
   }
@@ -69,7 +71,8 @@ export class UserTasklistComponent implements OnInit {
     const val = confirm("Are you sure you want to complete this task?");
     if (val) {
       const completeItem = {
-        status: "Completed"
+        status: "Completed",
+        completed_by: this.personLoggedIn
       };
       const task = this.backendData.find((task: any) => task.id === id);
       if (task) {
@@ -99,6 +102,7 @@ export class UserTasklistComponent implements OnInit {
       this.additional_end_date = task.finish_date;
       this.additional_assignedTo = task.assignedTo;
       this.additional_department = task.department;
+      this.additional_completed_by = task.completed_by;
     }
   }
 

@@ -1,7 +1,13 @@
 <div>
     <app-user-header></app-user-header>
     <div *ngIf="additionalDetailsActive == false" style="margin-top: 70px;">
-        <br>
+        <div style="padding-top: 40px;">
+            <i class="bi bi-circle-fill"
+                style="font-size: xx-large; color: #EEEEEE; padding-left: 30px; padding-right: 5px;"></i> Pending <i
+                class="bi bi-circle-fill"
+                style="font-size: xx-large; color: #CBFFA9; padding-right: 5px; padding-left: 20px"></i> Completed <i
+                class="bi bi-circle-fill" style="font-size: xx-large; color: #FF9B9B; padding-left: 20px"></i> Overdue
+        </div>
         <div style="margin: 0 auto; max-width: 1220px;">
             <table class="table table-hover" style="margin-top: 30px;">
                 <thead style="border-bottom: 1px;">
@@ -74,16 +80,24 @@
             <hr>
             <h3 class="card-text">{{additional_additional_description}}</h3>
             <hr>
-            <h1 class="mt-4"><i class="bi bi-info-circle"></i> Status: <span style="font-weight: bold; text-decoration: underline;">{{additional_status}}</span></h1>
-            <h1><i class="bi bi-exclamation-triangle"></i> Priority: <span style="font-weight: bold; text-decoration: underline;">{{additional_priority}}</span></h1>
-            <h1><i class="bi bi-calendar3"></i> Start Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_start_date}}</span></h1>
-            <h1><i class="bi bi-calendar3-event"></i> Finish Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_end_date}}</span></h1>
-            <h1><i class="bi bi-building"></i> Department: <span style="font-weight: bold; text-decoration: underline;">{{additional_department}}</span></h1>
-            <h1><i class="bi bi-person"></i> Assigned To: <span style="font-weight: bold; text-decoration: underline;">{{additional_assignedTo}}</span></h1>
+            <h1 class="mt-4"><i class="bi bi-info-circle"></i> Status: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_status}}</span></h1>
+            <h1><i class="bi bi-exclamation-triangle"></i> Priority: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_priority}}</span></h1>
+            <h1><i class="bi bi-calendar3"></i> Start Date: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_start_date}}</span></h1>
+            <h1><i class="bi bi-calendar3-event"></i> Finish Date: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_end_date}}</span></h1>
+            <h1><i class="bi bi-building"></i> Department: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_department}}</span></h1>
+            <h1><i class="bi bi-person"></i> Assigned To: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_assignedTo}}</span></h1>
+            <h1><i class="bi bi-check-circle"></i> Completed By: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_completed_by}}</span></h1>
         </div>
     </div>
 </div>
 <br>
 <div *ngIf="additionalDetailsActive == false">
-<app-user-footer></app-user-footer>
+    <app-user-footer></app-user-footer>
 </div>

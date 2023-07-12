@@ -5,8 +5,8 @@
 <div style="display: flex; justify-content: center;">
     <form [formGroup]="addTaskForm">
         <div class="form-group">
-            <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject (Max 50 Characters)</label>
-            <input maxlength="50" formControlName="subject" type="text" class="form-control"
+            <label for="exampleFormControlInput1" style="font-weight: bold;">Task Subject (Max 55 Characters)</label>
+            <input maxlength="55" formControlName="subject" type="text" class="form-control"
                 id="exampleFormControlInput1" placeholder="Please insert a Task Subject (REQUIRED)"
                 style="margin-top: 5px; width: 600px;">
         </div>
@@ -63,8 +63,8 @@
         <br>
         <br>
         <div class="form-group">
-            <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To (Max 50 Characters)</label>
-            <input maxlength="50" formControlName="assignedTo" type="text" class="form-control"
+            <label for="exampleFormControlInput1" style="font-weight: bold;">Assigned To (Max 20 Characters)</label>
+            <input maxlength="20" formControlName="assignedTo" type="text" class="form-control"
                 id="exampleFormControlInput1"
                 placeholder="Please insert who is specifically assigned to this task (Optional)"
                 style="margin-top: 5px; width: 600px;">

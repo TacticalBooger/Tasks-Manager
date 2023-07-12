@@ -20,7 +20,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required, Validators.email],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -30,7 +30,6 @@ export class LoginPageComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
     }).subscribe((next: any) => {
-      console.log(next);
       localStorage.setItem('token', (next.user._delegate.accessToken));
       this.router.navigate(["/main"]);
     }, (error: any) => {

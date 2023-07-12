@@ -34,7 +34,8 @@ export class AdminAddtaskComponent implements OnInit {
       start_date: ['', Validators.required],
       finish_date: ['', Validators.required],
       department: ['', Validators.required],
-      assignedTo: ['']
+      assignedTo: [''],
+      completed_by: ['']
     });
   }
 
@@ -65,6 +66,10 @@ export class AdminAddtaskComponent implements OnInit {
 
     if (addTask.assignedTo === '') {
       addTask.assignedTo = 'N/A'
+    }
+
+    if (addTask.completed_by === '') {
+      addTask.completed_by = 'N/A'
     }
 
     this.serviceUserData.servicePostTask(addTask).subscribe((data: any) => {

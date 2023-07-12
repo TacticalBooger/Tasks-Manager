@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserDataService } from '../user-data.service';
 
 @Component({
   selector: 'app-user-header',
@@ -8,11 +9,14 @@ import { Router } from '@angular/router';
 })
 export class UserHeaderComponent {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private serviceUserData: UserDataService) {
     
   }
+
+  personLoggedIn = this.serviceUserData.personLoggedIn
   
   logOut(){
+    localStorage.setItem('token', '');
     this.router.navigate(['/login_page'])
   }
   

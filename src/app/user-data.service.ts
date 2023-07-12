@@ -13,6 +13,7 @@ export class UserDataService {
   constructor(private http: HttpClient,
     private auth: AngularFireAuth) { }
 
+  personLoggedIn = '';
   baseUrl = 'http://localhost:3000/db';
 
   getData() {
@@ -35,7 +36,7 @@ export class UserDataService {
     return from(this.auth.signInWithEmailAndPassword(params.email, params.password))
   }
 
-  isLoggedIn() {
+  isLoggedIn() { //check for authguard to make sure user is authenticated
 
     let currentDate = new Date();
     let undecodedToken: any = localStorage.getItem('token');
@@ -44,10 +45,14 @@ export class UserDataService {
     }
     let decodedToken: any = jwt_decode(undecodedToken);
     let convertedDate = new Date(decodedToken.exp * 1000);
+    let currentLogIn = decodedToken.email
+    if (currentLogIn = "admin-test@cit.edu.al") {
+      this.personLoggedIn = "Byrektore Bardhyli"
+    }
     if (currentDate < convertedDate) {
       return true;
     }
-      return false;
+    return false;
   }
 
 }

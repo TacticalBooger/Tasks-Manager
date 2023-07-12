@@ -15,6 +15,7 @@ export class AdminTasklistComponent implements OnInit {
 
   //initialized variables
   editTaskForm!: FormGroup;
+  personLoggedIn = this.serviceUserData.personLoggedIn
 
   edit_subject!: any
   edit_priority!: any
@@ -33,6 +34,7 @@ export class AdminTasklistComponent implements OnInit {
   additional_assignedTo!: any
   additional_department!: any
   additional_additional_description!: any
+  additional_completed_by!: any
 
   backendData!: any;
   editMessage = ""
@@ -57,7 +59,8 @@ export class AdminTasklistComponent implements OnInit {
       start_date: ['', Validators.required],
       finish_date: ['', Validators.required],
       department: ['', Validators.required],
-      assignedTo: ['']
+      assignedTo: [''],
+      completed_by: ['']
     });
 
     this.updateTaskStatus()
@@ -91,7 +94,8 @@ export class AdminTasklistComponent implements OnInit {
     const val = confirm("Are you sure you want to complete this task?");
     if (val) {
       const completeItem = {
-        status: "Completed"
+        status: "Completed",
+        completed_by: this.personLoggedIn
       };
       const task = this.backendData.find((task: any) => task.id === id);
       if (task) {
@@ -133,16 +137,23 @@ export class AdminTasklistComponent implements OnInit {
     if (updatedTask) {
       updatedTask = this.editTaskForm.value;
 
-    updatedTask.start_date = this.datePipe.transform(updatedTask.start_date, 'MMM d, yyyy');
-    updatedTask.finish_date = this.datePipe.transform(updatedTask.finish_date, 'MMM d, yyyy');
+      updatedTask.start_date = this.datePipe.transform(updatedTask.start_date, 'MMM d, yyyy');
+      updatedTask.finish_date = this.datePipe.transform(updatedTask.finish_date, 'MMM d, yyyy');
 
-    if(updatedTask.additional_description === '') {
-      updatedTask.additional_description = 'N/A'
-    }
+      if (updatedTask.additional_description === '') {
+        updatedTask.additional_description = 'N/A'
+      }
 
-    if(updatedTask.assignedTo === '') {
-      updatedTask.assignedTo = 'N/A'
-    }
+      if (updatedTask.assignedTo === '') {
+        updatedTask.assignedTo = 'N/A'
+      }
+
+      if (updatedTask.status !== 'Completed')
+        updatedTask.completed_by = 'N/A'
+
+      if (updatedTask.completed_by === '') {
+        updatedTask.completed_by = 'N/A'
+      }
 
       this.serviceUserData.servicePatchTask(this.selection, updatedTask).subscribe((data: any) => {
         this.getTasks();
@@ -175,6 +186,7 @@ export class AdminTasklistComponent implements OnInit {
       this.additional_end_date = task.finish_date;
       this.additional_assignedTo = task.assignedTo;
       this.additional_department = task.department;
+      this.additional_completed_by = task.completed_by
     }
   }
 
