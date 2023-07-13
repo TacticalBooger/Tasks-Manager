@@ -13,7 +13,7 @@ export class UserHeaderComponent {
     
   }
 
-  personLoggedIn = this.serviceUserData.personLoggedIn
+  personLoggedIn = this.serviceUserData.personLoggedIn[1]
   
   logOut(){
     localStorage.setItem('token', '');

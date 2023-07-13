@@ -44,8 +44,8 @@ export class UserDataService {
     let decodedToken: any = jwt_decode(undecodedToken);
     let currentLogIn = decodedToken.email;
 
-    const adminEmails = ["admin-test@cit.edu.al"]; 
-    const userEmails = ["user-test@cit.edu.al"]; 
+    const adminEmails = ["admin-test@cit.edu.al", "admin-steve@cit.edu.al"]; 
+    const userEmails = ["user-test@cit.edu.al", "user-guri@cit.edu.al"]; 
 
     if (adminEmails.includes(currentLogIn)) {
       return 'Admin';
@@ -66,10 +66,8 @@ export class UserDataService {
     let decodedToken: any = jwt_decode(undecodedToken);
     let convertedDate = new Date(decodedToken.exp * 1000);
     let currentLogIn = decodedToken.email;
-    if (currentLogIn === "admin-test@cit.edu.al") {
-      this.personLoggedIn = "Byrektore Bardhyli"
-    } else if (currentLogIn === "user-test@cit.edu.al") {
-      this.personLoggedIn = "Gomisteri Xhimi"
+    if (currentLogIn) {
+      this.personLoggedIn = currentLogIn.split(/[-@]/);
     }
     if (currentDate < convertedDate) {
       return true;

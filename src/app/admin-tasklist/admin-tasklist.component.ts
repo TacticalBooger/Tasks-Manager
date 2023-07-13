@@ -15,7 +15,7 @@ export class AdminTasklistComponent implements OnInit {
 
   //initialized variables
   editTaskForm!: FormGroup;
-  personLoggedIn = this.serviceUserData.personLoggedIn
+  personLoggedIn = this.serviceUserData.personLoggedIn[1]
 
   edit_subject!: any
   edit_priority!: any

@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 export class UserTasklistComponent implements OnInit {
 
   currentDate!: Date;
-  personLoggedIn = this.serviceUserData.personLoggedIn
+  personLoggedIn = this.serviceUserData.personLoggedIn[1]
 
   //initialized variables
 
