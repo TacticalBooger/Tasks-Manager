@@ -61,15 +61,15 @@ export class AdminAddtaskComponent implements OnInit {
     addTask.finish_date = this.datePipe.transform(addTask.finish_date, 'MMM d, yyyy');
 
     if (addTask.additional_description === '') {
-      addTask.additional_description = 'N/A'
+      addTask.additional_description = 'Not Available'
     }
 
     if (addTask.assignedTo === '') {
-      addTask.assignedTo = 'N/A'
+      addTask.assignedTo = 'Not Available'
     }
 
     if (addTask.completed_by === '') {
-      addTask.completed_by = 'N/A'
+      addTask.completed_by = 'Not Available'
     }
 
     this.serviceUserData.servicePostTask(addTask).subscribe((data: any) => {

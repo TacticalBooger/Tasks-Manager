@@ -141,18 +141,18 @@ export class AdminTasklistComponent implements OnInit {
       updatedTask.finish_date = this.datePipe.transform(updatedTask.finish_date, 'MMM d, yyyy');
 
       if (updatedTask.additional_description === '') {
-        updatedTask.additional_description = 'N/A'
+        updatedTask.additional_description = 'Not Available'
       }
 
       if (updatedTask.assignedTo === '') {
-        updatedTask.assignedTo = 'N/A'
+        updatedTask.assignedTo = 'Not Available'
       }
 
       if (updatedTask.status !== 'Completed')
-        updatedTask.completed_by = 'N/A'
+        updatedTask.completed_by = 'Not Available'
 
       if (updatedTask.completed_by === '') {
-        updatedTask.completed_by = 'N/A'
+        updatedTask.completed_by = 'Not Available'
       }
 
       this.serviceUserData.servicePatchTask(this.selection, updatedTask).subscribe((data: any) => {

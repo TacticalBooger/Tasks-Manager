@@ -16,12 +16,12 @@
       "subject": "Replace the coffee machine",
       "additional_description": "This is a test description.",
       "priority": "LOW",
-      "start_date": "Jul 6, 2023",
-      "finish_date": "Jul 29, 2023",
+      "start_date": "Jul 1, 2023",
+      "finish_date": "Jul 19, 2023",
       "department": "Engineering",
       "assignedTo": "Test3",
-      "status": "Pending",
-      "completed_by": "N/A",
+      "status": "In Progress",
+      "completed_by": "Not Available",
       "id": 1
     },
     {
