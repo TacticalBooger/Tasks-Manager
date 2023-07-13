@@ -36,6 +36,26 @@ export class UserDataService {
     return from(this.auth.signInWithEmailAndPassword(params.email, params.password))
   }
 
+  getUserRole(): string | null { //checks if log in is USER or ADMIN
+    let undecodedToken: any = localStorage.getItem('token');
+    if (!undecodedToken) {
+      return null;
+    }
+    let decodedToken: any = jwt_decode(undecodedToken);
+    let currentLogIn = decodedToken.email;
+
+    const adminEmails = ["admin-test@cit.edu.al"]; 
+    const userEmails = ["user-test@cit.edu.al"]; 
+
+    if (adminEmails.includes(currentLogIn)) {
+      return 'Admin';
+    }
+    if (userEmails.includes(currentLogIn)) {
+      return 'User';
+    }
+    return null;
+  }
+
   isLoggedIn() { //check for authguard to make sure user is authenticated
 
     let currentDate = new Date();
@@ -45,9 +65,11 @@ export class UserDataService {
     }
     let decodedToken: any = jwt_decode(undecodedToken);
     let convertedDate = new Date(decodedToken.exp * 1000);
-    let currentLogIn = decodedToken.email
-    if (currentLogIn = "admin-test@cit.edu.al") {
+    let currentLogIn = decodedToken.email;
+    if (currentLogIn === "admin-test@cit.edu.al") {
       this.personLoggedIn = "Byrektore Bardhyli"
+    } else if (currentLogIn === "user-test@cit.edu.al") {
+      this.personLoggedIn = "Gomisteri Xhimi"
     }
     if (currentDate < convertedDate) {
       return true;

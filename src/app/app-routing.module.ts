@@ -9,14 +9,14 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthGuard } from './authguard.guard';
 
 const routes: Routes = [
-  {path: 'login_page', component:LoginPageComponent },
-  {path: 'main', component:AdminTasklistComponent, canActivate:[AuthGuard]},
-  {path: 'admin_addTask', component:AdminAddtaskComponent, canActivate:[AuthGuard]},
-  {path: 'about_us', component:AbousUsComponent, canActivate:[AuthGuard]},
-  {path: 'about_us_user', component:AboutUsUserComponent},
-  {path: 'user_main', component:UserTasklistComponent },
-  {path: '', redirectTo: 'login_page', pathMatch: 'full'},
-  {path: '**', redirectTo: 'login_page', pathMatch: 'full'},
+  { path: 'login_page', component: LoginPageComponent },
+  { path: 'main', component: AdminTasklistComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'admin_addTask', component: AdminAddtaskComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'about_us', component: AbousUsComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'about_us_user', component: AboutUsUserComponent, canActivate: [AuthGuard], data: { roles: ['User'] } },
+  { path: 'user_main', component: UserTasklistComponent, canActivate: [AuthGuard], data: { roles: ['User'] } },
+  { path: '', redirectTo: 'login_page', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login_page', pathMatch: 'full' },
 ];
 
 @NgModule({

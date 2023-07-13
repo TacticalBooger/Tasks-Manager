@@ -29,16 +29,23 @@ export class LoginPageComponent implements OnInit {
     this.serviceUserData.signIn({
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
-    }).subscribe((next: any) => {
-      localStorage.setItem('token', (next.user._delegate.accessToken));
-      this.router.navigate(["/main"]);
-    }, (error: any) => {
-      this.loginMessage = "The Login Credentials are incorrect! Please try again.";
-      this.loginMessage2 = "ERROR MESSAGE: " + error;
-      setTimeout(() => {
-        this.loginMessage = "";
-        this.loginMessage2 = "";
-      }, 5000);
+    }).subscribe(
+      (next: any) => {
+        localStorage.setItem('token', (next.user._delegate.accessToken));
+        const userRole = this.serviceUserData.getUserRole();
+        if (userRole === 'Admin') {
+          this.router.navigate(['/main']);
+        } else if (userRole === 'User') {
+          this.router.navigate(['/user_main']);
+        }
+      },
+      (error: any) => {
+        this.loginMessage = "The Login Credentials are incorrect! Please try again.";
+        this.loginMessage2 = "ERROR MESSAGE: " + error;
+        setTimeout(() => {
+          this.loginMessage = "";
+          this.loginMessage2 = "";
+        }, 5000);
     })
   }
 
