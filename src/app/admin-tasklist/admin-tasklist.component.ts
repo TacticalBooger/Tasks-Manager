@@ -41,6 +41,7 @@ export class AdminTasklistComponent implements OnInit {
   selection!: number
   editTaskActive: boolean = false
   additionalDetailsActive: boolean = false
+  showSuccess!: boolean
 
   constructor(private fb: FormBuilder, private serviceUserData: UserDataService, private datePipe: DatePipe) {
 
@@ -159,10 +160,15 @@ export class AdminTasklistComponent implements OnInit {
         this.getTasks();
       });
 
+      this.showSuccess = true
       this.editMessage = "Task Updated!";
       setTimeout(() => {
         this.editMessage = "";
-      }, 2500);
+        this.editTaskActive = false
+    this.additionalDetailsActive = false
+    this.showSuccess = false
+    this.getTasks();
+      }, 1500);
     }
   }
 

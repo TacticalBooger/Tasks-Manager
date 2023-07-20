@@ -44,6 +44,7 @@ export class AdminAddtaskComponent implements OnInit {
 
   addedMessage!: string
   backendData!: any
+  showSuccess!: boolean
 
   addTaskArray: any = {}
 
@@ -76,10 +77,13 @@ export class AdminAddtaskComponent implements OnInit {
       this.getTasks();
     })
 
+    this.showSuccess = true
     this.addedMessage = "Task Added!"
     setTimeout(() => {
       this.addedMessage = "";
-    }, 2500);
+      this.router.navigate(['/main'])
+      this.showSuccess = false
+    }, 1500);
 
   }
 

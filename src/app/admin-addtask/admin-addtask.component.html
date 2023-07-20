@@ -77,7 +77,10 @@
 
     <br>
     <h1 *ngIf="addTaskForm.invalid" style="font-weight: bold;">Please complete all the required fields!</h1>
-
+    <div style="padding-bottom: 10px;"> <span *ngIf="showSuccess" class="alert alert-success" role="alert" style="text-align: center; font-size: x-large;" >
+        {{addedMessage}}
+    </span></div>
+    <br>
     <button type="button" class="btn btn-primary" style="font-size: x-large; margin-right: 10px;"
         (click)="admin_takeToMainTask()"><i class="bi bi-box-arrow-left"></i> Back to Tasks View</button>
 
@@ -85,6 +88,3 @@
         style="font-size: x-large; margin-left: 10px;" (click)="addTask()"><i class="bi bi-clipboard2-plus"></i> Add New
         Task</button>
 </div>
-
-<br>
-<h1 class="text-center" style="padding-bottom: 40px; font-weight: bold;"> {{addedMessage}} </h1>

@@ -45,7 +45,7 @@ export class LoginPageComponent implements OnInit {
         setTimeout(() => {
           this.loginMessage = "";
           this.loginMessage2 = "";
-        }, 5000);
+        }, 10000);
     })
   }
 

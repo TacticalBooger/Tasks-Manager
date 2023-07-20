@@ -47,7 +47,7 @@
                         <td class="text-center"
                             style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
                             [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.assignedTo}}</td>
+                            {{userdata.assignedTo | titlecase}}</td>
                         <td class="text-center"
                             style="width: 100px; height: 40px; border-right: 1px solid black; cursor: pointer;"
                             [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
@@ -162,6 +162,11 @@
     <div class="text-center">
         <br>
         <h1 *ngIf="editTaskForm.invalid" style="font-weight: bold;">Please complete all the required fields!</h1>
+
+        <div style="padding-bottom: 10px;"> <span *ngIf="showSuccess" class="alert alert-success" role="alert" style="text-align: center; font-size: x-large;" >
+            {{editMessage}}
+        </span></div>
+        <br>
         <button type="button" class="btn btn-primary" style="font-size: x-large; margin-right: 10px;"
             (click)="backToList()"><i class="bi bi-box-arrow-left"></i> Back to Tasks List</button>
 
@@ -169,9 +174,6 @@
             style="font-size: x-large; margin-left: 10px;" (click)="editTaskFinal()"><i
                 class="bi bi-clipboard2-plus"></i> Update Task</button>
     </div>
-    <br>
-    <h1 class="text-center" style="font-weight: bold;"> {{editMessage}} </h1>
-    <br>
 </div>
 
 <!-- Edit Task View -->

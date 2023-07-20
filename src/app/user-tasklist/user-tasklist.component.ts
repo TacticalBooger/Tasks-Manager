@@ -13,6 +13,7 @@ export class UserTasklistComponent implements OnInit {
 
   currentDate!: Date;
   personLoggedIn = this.serviceUserData.personLoggedIn[1]
+  personLoggedInUpperCase = this.personLoggedIn.charAt(0).toUpperCase() + this.personLoggedIn.slice(1);
 
   //initialized variables
 

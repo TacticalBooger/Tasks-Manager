@@ -8,7 +8,7 @@
       "start_date": "Jul 1, 2023",
       "finish_date": "Aug 24, 2023",
       "department": "Engineering",
-      "assignedTo": "Emma Thompson",
+      "assignedTo": "Guri Xhufka",
       "completed_by": "Not Available",
       "id": 1
     },
@@ -16,7 +16,7 @@
       "subject": "Review Exam Results (Software Security)",
       "additional_description": "Review the exam results for the 'Physics 201' course. Identify students who scored below 50% and notify them about a retake opportunity.",
       "priority": "MED",
-      "status": "In Progress",
+      "status": "Pending",
       "start_date": "Jul 29, 2023",
       "finish_date": "Aug 31, 2023",
       "department": "Engineering",
@@ -44,7 +44,7 @@
       "start_date": "Jul 5, 2023",
       "finish_date": "Jul 26, 2023",
       "department": "Other",
-      "assignedTo": "Jackson Sullivan",
+      "assignedTo": "Guri Xhufka",
       "completed_by": "jackson",
       "id": 4
     },
@@ -56,7 +56,7 @@
       "start_date": "Jul 1, 2023",
       "finish_date": "Jul 6, 2023",
       "department": "Engineering",
-      "assignedTo": "Benjamin Foster",
+      "assignedTo": "Anxhela Baraj",
       "completed_by": "Not Available",
       "id": 5
     },
@@ -68,7 +68,7 @@
       "start_date": "Jul 4, 2023",
       "finish_date": "Jul 12, 2023",
       "department": "Administrative",
-      "assignedTo": "Ethan Winters",
+      "assignedTo": "Not Available",
       "completed_by": "Not Available",
       "id": 6
     },
@@ -77,10 +77,10 @@
       "additional_description": "Allocate teaching assistants to various courses for the upcoming semester in the Engineering Department. Consider their areas of expertise and availability.",
       "priority": "HIGH",
       "status": "In Progress",
-      "start_date": "Jul 11, 2023",
-      "finish_date": "Jul 31, 2023",
+      "start_date": "Jul 31, 2023",
+      "finish_date": "Oct 31, 2023",
       "department": "Engineering",
-      "assignedTo": "Michael Myers",
+      "assignedTo": "Guri Xhufka",
       "completed_by": "Not Available",
       "id": 7
     },
@@ -88,11 +88,11 @@
       "subject": "Update Academic Calendar",
       "additional_description": "Update the academic calendar with important dates, such as the start and end of classes, examination periods, and holidays for the upcoming year.",
       "priority": "LOW",
-      "status": "",
+      "status": "In Progress",
       "start_date": "Jul 1, 2023",
       "finish_date": "Sep 30, 2023",
       "department": "Administrative",
-      "assignedTo": "Liam Cooper",
+      "assignedTo": "Guri Xhufka",
       "completed_by": "Not Available",
       "id": 8
     },
@@ -100,11 +100,11 @@
       "subject": "Organize Faculty Meeting",
       "additional_description": "Schedule a faculty meeting on 30th July to discuss curriculum updates, research opportunities, and any other relevant matters. Share the agenda in advance.",
       "priority": "HIGH",
-      "status": "",
+      "status": "In Progress",
       "start_date": "Jul 1, 2023",
       "finish_date": "Jul 25, 2023",
       "department": "Administrative",
-      "assignedTo": "Ava Peterson",
+      "assignedTo": "Not Available",
       "completed_by": "Not Available",
       "id": 9
     },
@@ -116,7 +116,7 @@
       "start_date": "Jul 1, 2023",
       "finish_date": "Jul 31, 2023",
       "department": "Telecoms",
-      "assignedTo": "Sophia Reynolds",
+      "assignedTo": "Shefqet Meda",
       "completed_by": "Not Available",
       "id": 10
     },
@@ -124,11 +124,11 @@
       "subject": "Create Student Survey (Telecom Courses)",
       "additional_description": "Design a survey to gather feedback from students regarding their satisfaction with the current course offerings and suggestions for improvement.",
       "priority": "HIGH",
-      "status": "",
+      "status": "In Progress",
       "start_date": "Jul 1, 2023",
       "finish_date": "Jul 10, 2023",
       "department": "Telecoms",
-      "assignedTo": "Isabella Johnson",
+      "assignedTo": "Anxhela Baraj",
       "completed_by": "Not Available",
       "id": 11
     },
@@ -140,9 +140,21 @@
       "start_date": "Jul 1, 2023",
       "finish_date": "Jul 20, 2023",
       "department": "Engineering",
-      "assignedTo": "William Anderson",
+      "assignedTo": "Not Available",
       "completed_by": "william",
       "id": 12
+    },
+    {
+      "subject": "test",
+      "additional_description": "Not Available",
+      "priority": "MED",
+      "status": "In Progress",
+      "start_date": "Jul 1, 2023",
+      "finish_date": "Jul 15, 2023",
+      "department": "Engineering",
+      "assignedTo": "Not Available",
+      "completed_by": "Not Available",
+      "id": 13
     }
   ]
 }
