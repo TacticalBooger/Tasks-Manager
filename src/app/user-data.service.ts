@@ -44,13 +44,13 @@ export class UserDataService {
     let decodedToken: any = jwt_decode(undecodedToken);
     let currentLogIn = decodedToken.email;
 
-    const adminEmails = ["admin-test@cit.edu.al", "admin-steve@cit.edu.al"]; 
-    const userEmails = ["user-test@cit.edu.al", "user-guri@cit.edu.al"]; 
+    const adminEmails = ["admin-"]; 
+    const userEmails = ["user-"]; 
 
-    if (adminEmails.includes(currentLogIn)) {
+    if (currentLogIn.includes(adminEmails)) {
       return 'Admin';
     }
-    if (userEmails.includes(currentLogIn)) {
+    if (currentLogIn.includes(userEmails)) {
       return 'User';
     }
     return null;
