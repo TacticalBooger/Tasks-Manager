@@ -44,7 +44,7 @@ export class UserTasklistComponent implements OnInit {
     this.updateTaskStatus()
   }
 
-  updateTaskStatus() {
+  updateTaskStatus() { //automatically runs on app and sets the status according to date
     const currentDate = new Date();
     this.backendData.forEach((task: any) => {
       const startDate = new Date(task.start_date);

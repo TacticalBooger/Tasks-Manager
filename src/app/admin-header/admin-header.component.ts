@@ -15,7 +15,7 @@ export class AdminHeaderComponent {
 
   personLoggedIn = this.serviceUserData.personLoggedIn[1]
   
-  logOut(){
+  logOut(){ //will completely clear any saved tokens on the browser
     localStorage.setItem('token', '');
     this.router.navigate(['/login_page'])
   }

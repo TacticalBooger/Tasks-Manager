@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  loginTest() {
+  loginTest() { //contains all the logic for logging, getting tokens and setting roles according to email
     this.serviceUserData.signIn({
       email: this.loginForm.value.email,
       password: this.loginForm.value.password

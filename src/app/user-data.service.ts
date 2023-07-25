@@ -16,23 +16,23 @@ export class UserDataService {
   personLoggedIn = '';
   baseUrl = 'http://localhost:3000/db';
 
-  getData() {
+  getData() { //fetch data from backend
     return this.http.get('http://localhost:3000/db')
   }
 
-  serviceDeleteTask(id: number): Observable<any> {
+  serviceDeleteTask(id: number): Observable<any> { //delete from backend
     return this.http.delete('http://localhost:3000/userInfo/' + id)
   }
 
-  servicePostTask(newItem: any): Observable<any> {
+  servicePostTask(newItem: any): Observable<any> { //add new stuff to backend
     return this.http.post('http://localhost:3000/userInfo/', newItem)
   }
 
-  servicePatchTask(id: number, updateItem: any): Observable<any> {
+  servicePatchTask(id: number, updateItem: any): Observable<any> { //edit existing stuff to backend
     return this.http.patch('http://localhost:3000/userInfo/' + id, updateItem)
   }
 
-  signIn(params: SignIn): Observable<any> {
+  signIn(params: SignIn): Observable<any> { //method for signing in and authenticating
     return from(this.auth.signInWithEmailAndPassword(params.email, params.password))
   }
 
