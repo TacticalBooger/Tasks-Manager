@@ -35,9 +35,10 @@
                         <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block"
                             style="margin-top: 35px;" (click)="loginTest()">Submit</button>
                     </form>
-                    <h2>{{loginMessage}}</h2>
-                    <h4>{{loginMessage2}}</h4>
-
+                    <div *ngIf="loginMessage !== ''" style="padding-top: 20px;">
+                    <h4 class="alert alert-danger text-center" role="alert">{{loginMessage}}</h4>
+                    <h4 class="alert alert-danger text-center" role="alert">{{loginMessage2}}</h4>
+                </div>
                 </div>
             </div>
         </div>

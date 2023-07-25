@@ -76,7 +76,7 @@
       "subject": "Allocate Teaching Assistants (Engineering Courses)",
       "additional_description": "Allocate teaching assistants to various courses for the upcoming semester in the Engineering Department. Consider their areas of expertise and availability.",
       "priority": "HIGH",
-      "status": "In Progress",
+      "status": "Pending",
       "start_date": "Jul 31, 2023",
       "finish_date": "Oct 31, 2023",
       "department": "Engineering",

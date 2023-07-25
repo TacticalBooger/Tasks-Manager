@@ -161,7 +161,7 @@
 
     <div class="text-center" style="padding-bottom: 50px;">
         <br>
-        <h1 *ngIf="editTaskForm.invalid" style="font-weight: bold;">Please complete all the required fields!</h1>
+        <span *ngIf="editTaskForm.invalid" class="alert alert-danger" role="alert" style="text-align: center; font-size: x-large;">Please complete all the required fields!</span>
 
         <div style="padding-bottom: 10px;"> <span *ngIf="showSuccess" class="alert alert-success" role="alert" style="text-align: center; font-size: x-large;" >
             {{editMessage}}
@@ -187,7 +187,7 @@
 
     <div class="card mx-auto" style="max-width: 600px; margin-top: 20px; margin-bottom: 20px;">
         <div class="card-body">
-            <h1 class="card-title text-center">{{additional_subject}}</h1>
+            <h1 class="card-title text-center alert alert-primary" role="alert">{{additional_subject}}</h1>
             <hr>
             <h3 class="card-text">{{additional_additional_description}}</h3>
             <hr>
