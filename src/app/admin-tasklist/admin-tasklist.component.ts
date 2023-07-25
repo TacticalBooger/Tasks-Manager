@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../user-data.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
@@ -127,6 +127,10 @@ export class AdminTasklistComponent implements OnInit {
     let task = this.backendData.find((task: any) => task.id === id);
 
     if (task) {
+
+      task.start_date = new Date(task.start_date);
+      task.finish_date = new Date(task.finish_date);
+
       this.editTaskForm.setValue(task);
       this.selection = task.id;
     }
@@ -165,9 +169,9 @@ export class AdminTasklistComponent implements OnInit {
       setTimeout(() => {
         this.editMessage = "";
         this.editTaskActive = false
-    this.additionalDetailsActive = false
-    this.showSuccess = false
-    this.getTasks();
+        this.additionalDetailsActive = false
+        this.showSuccess = false
+        this.getTasks();
       }, 1500);
     }
   }
