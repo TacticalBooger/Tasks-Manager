@@ -44,8 +44,8 @@ export class UserDataService {
     let decodedToken: any = jwt_decode(undecodedToken);
     let currentLogIn = decodedToken.email;
 
-    const adminEmails = ["admin-"]; 
-    const userEmails = ["user-"]; 
+    const adminEmails = ["admin-"];
+    const userEmails = ["user-"];
 
     if (currentLogIn.includes(adminEmails)) {
       return 'Admin';
