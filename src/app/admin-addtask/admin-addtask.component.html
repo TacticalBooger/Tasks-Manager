@@ -1,6 +1,8 @@
 <app-admin-header></app-admin-header>
-
-<h1 class="text-center" style="padding-top: 10px; margin-top: 80px; font-weight: bold;">Add New Task</h1>
+<br>
+<div class="d-flex justify-content-center">
+<h1 class="alert alert-primary w-25 text-center" style="margin-top: 80px; font-weight: bold;">Add New Task</h1>
+</div>
 <br>
 <div style="display: flex; justify-content: center;">
     <form [formGroup]="addTaskForm">
@@ -41,7 +43,7 @@
             <label for="exampleFormControlSelect1" style="font-weight: bold;">Task Priority</label>
             <select formControlName="priority" class="form-control" id="exampleFormControlSelect1"
                 style="margin-top: 5px; width: 600px;">
-                <option hidden>Please select a Task Priority (REQUIRED)</option>
+                <option disabled="true" [selected]="true" hidden style="color: grey;">Please select a Task Priority (REQUIRED)</option>
                 <option>LOW</option>
                 <option>MED</option>
                 <option>HIGH</option>
@@ -53,7 +55,7 @@
             <label for="exampleFormControlSelect1" style="font-weight: bold;">Department</label>
             <select formControlName="department" class="form-control" id="exampleFormControlSelect1"
                 style="margin-top: 5px; width: 600px;">
-                <option hidden>Please select a Department (REQUIRED)</option>
+                <option disabled="true" [selected]="true" hidden style="color: grey;">Please select a Department (REQUIRED)</option>
                 <option>Engineering</option>
                 <option>Telecoms</option>
                 <option>Administrative</option>
