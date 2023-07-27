@@ -4,12 +4,12 @@
       "subject": "Add New Course (Introduction to Computer Science)",
       "additional_description": "Create a new course titled 'Introduction to Computer Science' with the following details: course code, instructor, schedule, and classroom.",
       "priority": "HIGH",
-      "status": "Completed",
+      "status": "Pending",
       "start_date": "Jul 1, 2023",
       "finish_date": "Aug 17, 2023",
       "department": "Engineering",
       "assignedTo": "Guri Xhufka",
-      "completed_by": "guri",
+      "completed_by": "Not Available",
       "id": 1
     },
     {
