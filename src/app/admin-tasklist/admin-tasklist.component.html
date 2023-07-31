@@ -79,8 +79,9 @@
 <div *ngIf="editTaskActive == true && additionalDetailsActive == false">
     <br>
     <div class="d-flex justify-content-center">
-        <h1 class="alert alert-primary text-center" style="margin-top: 80px; font-weight: bold; width: 250px;">Edit Existing Task</h1>
-        </div>
+        <h1 class="alert alert-primary text-center" style="margin-top: 80px; font-weight: bold; width: 250px;">Edit
+            Existing Task</h1>
+    </div>
     <br>
     <div style="display: flex; justify-content: center;">
         <form [formGroup]="editTaskForm">
@@ -108,8 +109,10 @@
                 <mat-form-field style="border: 1px solid lightgrey; border-radius: 7px;">
                     <mat-label>Enter Dates (REQUIRED)</mat-label>
                     <mat-date-range-input [rangePicker]="picker">
-                        <input formControlName="start_date" matStartDate placeholder="Start Date" style="color: black;" readonly>
-                        <input formControlName="finish_date" matEndDate placeholder="Finish Date" style="color: black;" readonly>
+                        <input formControlName="start_date" matStartDate placeholder="Start Date" style="color: black;"
+                            readonly>
+                        <input formControlName="finish_date" matEndDate placeholder="Finish Date" style="color: black;"
+                            readonly>
                     </mat-date-range-input>
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -166,11 +169,13 @@
 
     <div class="text-center" style="padding-bottom: 50px;">
         <br>
-        <span *ngIf="editTaskForm.invalid" class="alert alert-danger" role="alert" style="text-align: center; font-size: x-large;">Please complete all the required fields!</span>
+        <span *ngIf="editTaskForm.invalid" class="alert alert-danger" role="alert"
+            style="text-align: center; font-size: x-large;">Please complete all the required fields!</span>
 
-        <div style="padding-bottom: 10px;"> <span *ngIf="showSuccess" class="alert alert-success" role="alert" style="text-align: center; font-size: x-large;" >
-            {{editMessage}}
-        </span></div>
+        <div style="padding-bottom: 10px;"> <span *ngIf="showSuccess" class="alert alert-success" role="alert"
+                style="text-align: center; font-size: x-large;">
+                {{editMessage}}
+            </span></div>
         <br>
         <button type="button" class="btn btn-primary" style="font-size: x-large; margin-right: 10px;"
             (click)="backToList()"><i class="bi bi-box-arrow-left"></i> Back to Tasks List</button>
@@ -196,19 +201,53 @@
             <hr>
             <h3 class="card-text">{{additional_additional_description}}</h3>
             <hr>
-            <h1 class="mt-4 alert alert-primary"><i class="bi bi-info-circle"></i> Status: <span style="font-weight: bold; text-decoration: underline;">{{additional_status}}</span></h1>
-            <h1 class="alert alert-primary"><i class="bi bi-exclamation-triangle"></i> Priority: <span style="font-weight: bold; text-decoration: underline;">{{additional_priority}}</span></h1>
-            <h1 class="alert alert-primary"><i class="bi bi-calendar3"></i> Start Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_start_date}}</span></h1>
-            <h1 class="alert alert-primary"><i class="bi bi-calendar3-event"></i> Finish Date: <span style="font-weight: bold; text-decoration: underline;">{{additional_end_date}}</span></h1>
-            <h1 class="alert alert-primary"><i class="bi bi-building"></i> Department: <span style="font-weight: bold; text-decoration: underline;">{{additional_department}}</span></h1>
-            <h1 class="alert alert-primary"><i class="bi bi-person"></i> Assigned To: <span style="font-weight: bold; text-decoration: underline;">{{additional_assignedTo}}</span></h1>
-            <h1 class="alert alert-primary"><i class="bi bi-check-circle"></i> Completed By: <span style="font-weight: bold; text-decoration: underline;">{{additional_completed_by | titlecase}}</span></h1>
+            <h1 class="mt-4 alert alert-primary"><i class="bi bi-info-circle"></i> Status: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_status}}</span></h1>
+            <h1 class="alert alert-primary"><i class="bi bi-exclamation-triangle"></i> Priority: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_priority}}</span></h1>
+            <h1 class="alert alert-primary"><i class="bi bi-calendar3"></i> Start Date: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_start_date}}</span></h1>
+            <h1 class="alert alert-primary"><i class="bi bi-calendar3-event"></i> Finish Date: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_end_date}}</span></h1>
+            <h1 class="alert alert-primary"><i class="bi bi-building"></i> Department: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_department}}</span></h1>
+            <h1 class="alert alert-primary"><i class="bi bi-person"></i> Assigned To: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_assignedTo}}</span></h1>
+            <h1 class="alert alert-primary"><i class="bi bi-check-circle"></i> Completed By: <span
+                    style="font-weight: bold; text-decoration: underline;">{{additional_completed_by |
+                    titlecase}}</span></h1>
+
+            <br>
+            <div>
+                <hr>
+                <br>
+                <h1><span class="alert alert-primary"><i class="bi bi-chat-dots"></i> Comments:</span></h1>
+                <br>
+
+                <div *ngFor="let comment of additional_comments">
+                    <h3>{{comment}}</h3>
+                </div>
+            </div>
+            <hr>
+            <form class="form-group" [formGroup]="addCommentForm">
+                <label for="exampleFormControlTextarea1" style="font-weight: bold;">Comment (Max 400
+                    Characters)</label>
+                <textarea maxlength="400" formControlName="comments" class="form-control"
+                    id="exampleFormControlTextarea1" rows="4" placeholder="Please write a comment here."></textarea>
+
+                <div style="padding-top: 25px;"> <span *ngIf="showSuccess2" class="alert alert-success" role="alert"
+                        style="text-align: center; font-size: x-large;">
+                        {{editMessage2}}
+                    </span></div>
+                <br>
+                <button type="button" class="btn btn-primary" (click)="addComment()">Submit</button>
+            </form>
         </div>
     </div>
 </div>
 <br>
 <div *ngIf="editTaskActive == false && additionalDetailsActive == false">
-<app-admin-footer></app-admin-footer>
-<br>
-<br>
+    <app-admin-footer></app-admin-footer>
+    <br>
+    <br>
 </div>

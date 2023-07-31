@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UserDataService } from '../user-data.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -35,13 +35,18 @@ export class AdminTasklistComponent implements OnInit {
   additional_department!: any
   additional_additional_description!: any
   additional_completed_by!: any
+  additional_comments!: any
 
   backendData!: any;
   editMessage = ""
+  editMessage2 = ""
   selection!: number
+  selection2!: number
   editTaskActive: boolean = false
   additionalDetailsActive: boolean = false
   showSuccess!: boolean
+  showSuccess2!: boolean
+  addCommentForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private serviceUserData: UserDataService, private datePipe: DatePipe) {
 
@@ -63,6 +68,10 @@ export class AdminTasklistComponent implements OnInit {
       assignedTo: [''],
       completed_by: ['']
     });
+
+    this.addCommentForm = this.fb.group({
+      comments: ['', Validators.required]
+    })
 
     this.updateTaskStatus()
   }
@@ -115,6 +124,19 @@ export class AdminTasklistComponent implements OnInit {
       if (taskIndex !== -1) {
         this.serviceUserData.serviceDeleteTask(id).subscribe((data: any) => {
           this.backendData.splice(taskIndex, 1);
+        });
+      }
+    }
+    this.getTasks();
+  }
+
+  deleteComment(id: number) { // delete task when you press DELETE
+    const val = confirm("Are you sure you want to delete this comment?");
+    if (val) {
+      const taskIndex = this.backendData.comments.findIndex((task: any) => task.id === id);
+      if (taskIndex !== -1) {
+        this.serviceUserData.serviceDeleteTask(id).subscribe((data: any) => {
+          this.backendData.comments.splice(taskIndex, 1);
         });
       }
     }
@@ -197,6 +219,38 @@ export class AdminTasklistComponent implements OnInit {
       this.additional_assignedTo = task.assignedTo;
       this.additional_department = task.department;
       this.additional_completed_by = task.completed_by
+      this.additional_comments = task.comments;
+      this.selection2 = task.id;
+
+      this.getTasks();
+    }
+  }
+
+  addComment() {
+    const selectedTask = this.backendData.find((task: any) => task.id === this.selection2);
+  
+    if (selectedTask) {
+      const newComment = this.addCommentForm.value.comments;
+      
+      const person3 = this.personLoggedIn[0].toUpperCase() + this.personLoggedIn.slice(1);
+      
+      selectedTask.comments.push(person3 + ": " + newComment);
+  
+      this.serviceUserData.servicePatchTask(this.selection2, selectedTask).subscribe((data: any) => {
+        this.getTasks();
+      });
+
+      this.addCommentForm.reset();
+
+      this.showSuccess2 = true
+      this.editMessage2 = "Comment Posted!";
+      setTimeout(() => {
+        this.editMessage2 = "";
+        this.editTaskActive = false
+        this.additionalDetailsActive = false
+        this.showSuccess2 = false
+        this.getTasks();
+      }, 1500);
     }
   }
 

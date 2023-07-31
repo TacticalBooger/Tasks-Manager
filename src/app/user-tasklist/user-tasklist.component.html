@@ -27,79 +27,81 @@
 
                 <tbody>
                     <ng-container *ngFor="let userdata of backendData">
-                    <tr *ngIf="userdata.assignedTo.includes(personLoggedInUpperCase) || userdata.assignedTo.includes(personLoggedIn)"
-                        style="border-left: 1px solid black; border-right: 1px solid black;">
-                        <td scope="row" class="text-start"
-                            style="width: 300px; height: 40px; cursor: pointer; font-weight: bold;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                              {{userdata.subject}}</td>
-                        <td class="text-center"
-                            style="font-weight: bold; width: 80px; height: 40px; border-left: 1px solid black; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="priorityColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.priority}}</td>
-                        <td class="text-center"
-                            style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.start_date}}</td>
-                        <td class="text-center"
-                            style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.finish_date}}</td>
-                        <td class="text-center"
-                            style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.department}}</td>
-                        <td class="text-center"
-                            style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.assignedTo | titlecase}}</td>
-                        <td class="text-center"
-                            style="width: 100px; height: 40px; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.status}}</td>
-                        <td class="text-center" style="width: 100px; height: 40px;"
-                            [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-success"
-                                style="width: 90px;" (click)="completeTask(userdata.id);"
-                                [disabled]="userdata.status === 'Completed'">Confirm</button></td>
-                    </tr>
+                        <tr *ngIf="userdata.assignedTo.includes(personLoggedInUpperCase) || userdata.assignedTo.includes(personLoggedIn)"
+                            style="border-left: 1px solid black; border-right: 1px solid black;">
+                            <td scope="row" class="text-start"
+                                style="width: 300px; height: 40px; cursor: pointer; font-weight: bold;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.subject}}</td>
+                            <td class="text-center"
+                                style="font-weight: bold; width: 80px; height: 40px; border-left: 1px solid black; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="priorityColor(userdata)"
+                                (click)="additionalDetails(userdata.id)">
+                                {{userdata.priority}}</td>
+                            <td class="text-center"
+                                style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.start_date}}</td>
+                            <td class="text-center"
+                                style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.finish_date}}</td>
+                            <td class="text-center"
+                                style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.department}}</td>
+                            <td class="text-center"
+                                style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.assignedTo | titlecase}}</td>
+                            <td class="text-center"
+                                style="width: 100px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.status}}</td>
+                            <td class="text-center" style="width: 100px; height: 40px;"
+                                [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-success"
+                                    style="width: 90px;" (click)="completeTask(userdata.id);"
+                                    [disabled]="userdata.status === 'Completed'">Confirm</button></td>
+                        </tr>
                     </ng-container>
                     <ng-container *ngFor="let userdata of backendData">
-                    <tr *ngIf="userdata.assignedTo == 'Not Available'"
-                        style="border-left: 1px solid black; border-right: 1px solid black;">
-                        <td scope="row" class="text-start"
-                            style="width: 300px; height: 40px; cursor: pointer; font-weight: bold;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                              {{userdata.subject}}</td>
-                        <td class="text-center"
-                            style="font-weight: bold; width: 80px; height: 40px; border-left: 1px solid black; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="priorityColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.priority}}</td>
-                        <td class="text-center"
-                            style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.start_date}}</td>
-                        <td class="text-center"
-                            style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.finish_date}}</td>
-                        <td class="text-center"
-                            style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.department}}</td>
-                        <td class="text-center"
-                            style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.assignedTo | titlecase}}</td>
-                        <td class="text-center"
-                            style="width: 100px; height: 40px; border-right: 1px solid black; cursor: pointer;"
-                            [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
-                            {{userdata.status}}</td>
-                        <td class="text-center" style="width: 100px; height: 40px;"
-                            [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-success"
-                                style="width: 90px;" (click)="completeTask(userdata.id);"
-                                [disabled]="userdata.status === 'Completed'">Confirm</button></td>
-                    </tr>
-                </ng-container>
+                        <tr *ngIf="userdata.assignedTo == 'Not Available'"
+                            style="border-left: 1px solid black; border-right: 1px solid black;">
+                            <td scope="row" class="text-start"
+                                style="width: 300px; height: 40px; cursor: pointer; font-weight: bold;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.subject}}</td>
+                            <td class="text-center"
+                                style="font-weight: bold; width: 80px; height: 40px; border-left: 1px solid black; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="priorityColor(userdata)"
+                                (click)="additionalDetails(userdata.id)">
+                                {{userdata.priority}}</td>
+                            <td class="text-center"
+                                style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.start_date}}</td>
+                            <td class="text-center"
+                                style="width: 140px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.finish_date}}</td>
+                            <td class="text-center"
+                                style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.department}}</td>
+                            <td class="text-center"
+                                style="width: 120px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.assignedTo | titlecase}}</td>
+                            <td class="text-center"
+                                style="width: 100px; height: 40px; border-right: 1px solid black; cursor: pointer;"
+                                [style.backgroundColor]="taskColor(userdata)" (click)="additionalDetails(userdata.id)">
+                                {{userdata.status}}</td>
+                            <td class="text-center" style="width: 100px; height: 40px;"
+                                [style.backgroundColor]="taskColor(userdata)"><button class="btn btn-success"
+                                    style="width: 90px;" (click)="completeTask(userdata.id);"
+                                    [disabled]="userdata.status === 'Completed'">Confirm</button></td>
+                        </tr>
+                    </ng-container>
                 </tbody>
             </table>
         </div>
@@ -134,11 +136,39 @@
             <h1 class="alert alert-primary"><i class="bi bi-person"></i> Assigned To: <span
                     style="font-weight: bold; text-decoration: underline;">{{additional_assignedTo}}</span></h1>
             <h1 class="alert alert-primary"><i class="bi bi-check-circle"></i> Completed By: <span
-                    style="font-weight: bold; text-decoration: underline;">{{additional_completed_by | titlecase}}</span></h1>
+                    style="font-weight: bold; text-decoration: underline;">{{additional_completed_by |
+                    titlecase}}</span></h1>
+
+            <div>
+                <hr>
+                <br>
+                <h1><span class="alert alert-primary"><i class="bi bi-chat-dots"></i> Comments:</span></h1>
+                <br>
+
+                <div *ngFor="let comment of additional_comments">
+                    <h2>{{comment | titlecase}}</h2>
+                </div>
+            </div>
+            <hr>
+            <form class="form-group" [formGroup]="addCommentForm">
+                <label for="exampleFormControlTextarea1" style="font-weight: bold;">Comment (Max 400
+                    Characters)</label>
+                <textarea maxlength="400" formControlName="comments" class="form-control"
+                    id="exampleFormControlTextarea1" rows="4" placeholder="Please write a comment here."></textarea>
+
+                <div style="padding-top: 25px;"> <span *ngIf="showSuccess2" class="alert alert-success" role="alert"
+                        style="text-align: center; font-size: x-large;">
+                        {{editMessage2}}
+                    </span></div>
+                <br>
+                <button type="button" class="btn btn-primary" (click)="addComment()">Submit</button>
+            </form>
+
         </div>
     </div>
 </div>
 <br>
+
 <div *ngIf="additionalDetailsActive == false">
     <br>
     <br>

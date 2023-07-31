@@ -35,6 +35,7 @@ export class AdminAddtaskComponent implements OnInit {
       finish_date: ['', Validators.required],
       department: ['', Validators.required],
       assignedTo: [''],
+      comments: this.fb.array (['']),
       completed_by: ['']
     });
   }

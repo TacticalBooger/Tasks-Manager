@@ -26,12 +26,17 @@ export class UserTasklistComponent implements OnInit {
   additional_department!: any
   additional_additional_description!: any
   additional_completed_by!: any
+  additional_comments!: any
 
   backendData!: any;
   editMessage = ""
   selection!: number
   editTaskActive: boolean = false
   additionalDetailsActive: boolean = false
+  selection2!: number
+  showSuccess2!: boolean
+  editMessage2 = ""
+  addCommentForm!: FormGroup
 
   constructor(private fb: FormBuilder, private serviceUserData: UserDataService, private datePipe: DatePipe) {
 
@@ -40,6 +45,10 @@ export class UserTasklistComponent implements OnInit {
   ngOnInit() {
 
     this.getTasks()
+
+    this.addCommentForm = this.fb.group({
+      comments: ['', Validators.required]
+    })
 
     this.updateTaskStatus()
   }
@@ -104,6 +113,38 @@ export class UserTasklistComponent implements OnInit {
       this.additional_assignedTo = task.assignedTo;
       this.additional_department = task.department;
       this.additional_completed_by = task.completed_by;
+      this.additional_comments = task.comments;
+      this.selection2 = task.id;
+
+      this.getTasks();
+    }
+  }
+
+  addComment() {
+    const selectedTask = this.backendData.find((task: any) => task.id === this.selection2);
+  
+    if (selectedTask) {
+      const newComment = this.addCommentForm.value.comments;
+      
+      const person3 = this.personLoggedIn[0].toUpperCase() + this.personLoggedIn.slice(1);
+      
+      selectedTask.comments.push(person3 + ": " + newComment);
+  
+      this.serviceUserData.servicePatchTask(this.selection2, selectedTask).subscribe((data: any) => {
+        this.getTasks();
+      });
+
+      this.addCommentForm.reset();
+
+      this.showSuccess2 = true
+      this.editMessage2 = "Comment Posted!";
+      setTimeout(() => {
+        this.editMessage2 = "";
+        this.editTaskActive = false
+        this.additionalDetailsActive = false
+        this.showSuccess2 = false
+        this.getTasks();
+      }, 1500);
     }
   }
 
