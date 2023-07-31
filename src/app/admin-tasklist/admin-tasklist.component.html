@@ -234,13 +234,16 @@
                     Characters)</label>
                 <textarea maxlength="400" formControlName="comments" class="form-control"
                     id="exampleFormControlTextarea1" rows="4" placeholder="Please write a comment here."></textarea>
+                    <span style="color: red;"
+                                *ngIf="addCommentForm.invalid && addCommentForm.touched">Please
+                                write a comment.</span>
 
                 <div style="padding-top: 25px;"> <span *ngIf="showSuccess2" class="alert alert-success" role="alert"
                         style="text-align: center; font-size: x-large;">
                         {{editMessage2}}
                     </span></div>
                 <br>
-                <button type="button" class="btn btn-primary" (click)="addComment()">Submit</button>
+                <button type="button" class="btn btn-primary" [disabled]="addCommentForm.invalid" (click)="addComment()">Submit</button>
             </form>
         </div>
     </div>
