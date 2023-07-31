@@ -11,6 +11,9 @@
       "assignedTo": "Guri Xhufka",
       "completed_by": "Not Available",
       "comments": [
+        "Steve: test",
+        "Steve: test",
+        "Steve: test3"
       ],
       "id": 1
     },
@@ -102,8 +105,7 @@
       "department": "Administrative",
       "assignedTo": "Guri Xhufka",
       "completed_by": "Not Available",
-      "comments": [
-      ],
+      "comments": [],
       "id": 8
     },
     {

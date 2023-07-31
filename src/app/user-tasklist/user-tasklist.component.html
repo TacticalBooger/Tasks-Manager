@@ -146,7 +146,8 @@
                 <br>
 
                 <div *ngFor="let comment of additional_comments">
-                    <h2>{{comment | titlecase}}</h2>
+                    <h2>{{comment}}</h2>
+                    <hr>
                 </div>
             </div>
             <hr>
@@ -163,7 +164,6 @@
                         style="text-align: center; font-size: x-large;">
                         {{editMessage2}}
                     </span></div>
-                <br>
                 <button type="button" class="btn btn-primary" [disabled]="addCommentForm.invalid" (click)="addComment()">Submit</button>
             </form>
 
