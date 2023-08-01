@@ -66,6 +66,7 @@ export class AdminTasklistComponent implements OnInit {
       finish_date: ['', Validators.required],
       department: ['', Validators.required],
       assignedTo: [''],
+      comments: [''],
       completed_by: ['']
     });
 

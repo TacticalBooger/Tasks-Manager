@@ -160,10 +160,11 @@
                                 *ngIf="addCommentForm.invalid && addCommentForm.touched">Please
                                 write a comment.</span>
 
-                <div style="padding-top: 25px;"> <span *ngIf="showSuccess2" class="alert alert-success" role="alert"
+                <div style="padding-top: 30px; padding-bottom: 5px;"> <span *ngIf="showSuccess2" class="alert alert-success" role="alert"
                         style="text-align: center; font-size: x-large;">
                         {{editMessage2}}
                     </span></div>
+                    <br>
                 <button type="button" class="btn btn-primary" [disabled]="addCommentForm.invalid" (click)="addComment()"><i class="bi bi-chat-text"></i> Submit</button>
             </form>
 

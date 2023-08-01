@@ -16,8 +16,6 @@ import { DatePipe } from '@angular/common';
 })
 export class AdminAddtaskComponent implements OnInit {
 
-  // currentDate = new Date();
-
   constructor(private fb: FormBuilder,
     private serviceUserData: UserDataService,
     private router: Router,

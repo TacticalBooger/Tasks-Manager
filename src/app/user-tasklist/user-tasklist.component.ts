@@ -152,7 +152,7 @@ export class UserTasklistComponent implements OnInit {
     if (userdata.status === 'Completed') {
       return '#CBFFA9'; // Green
     } else if (userdata.status === 'Overdue') {
-      return '#FF9B9B'; // Red
+      return '#FEA1A1'; // Red
     } else if (userdata.status === 'In Progress' || userdata.status === 'Pending') {
       return '#EEEEEE';
     } else {
@@ -171,12 +171,12 @@ export class UserTasklistComponent implements OnInit {
     }
 
     else if (userdata.priority === 'HIGH' && userdata.status === 'Overdue') {
-      return '#FF9B9B';
+      return '#FEA1A1';
     }
     else if (userdata.priority === 'MED' && userdata.status === 'Overdue') {
-      return '#FF9B9B';
+      return '#FEA1A1';
     } else if (userdata.priority === 'LOW' && userdata.status === 'Overdue') {
-      return '#FF9B9B';
+      return '#FEA1A1';
     }
 
 
