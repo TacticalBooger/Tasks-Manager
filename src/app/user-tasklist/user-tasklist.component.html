@@ -150,11 +150,11 @@
                     <hr>
                 </div>
             </div>
-            <hr>
+            <br>
             <form class="form-group" [formGroup]="addCommentForm">
-                <label for="exampleFormControlTextarea1" style="font-weight: bold;">Comment (Max 400
+                <label for="exampleFormControlTextarea1" style="font-weight: bold;">Comment (Max 500
                     Characters)</label>
-                    <textarea maxlength="400" formControlName="comments" class="form-control"
+                    <textarea maxlength="500" formControlName="comments" class="form-control"
                     id="exampleFormControlTextarea1" rows="4" placeholder="Please write a comment here."></textarea>
                     <span style="color: red;"
                                 *ngIf="addCommentForm.invalid && addCommentForm.touched">Please
@@ -164,7 +164,7 @@
                         style="text-align: center; font-size: x-large;">
                         {{editMessage2}}
                     </span></div>
-                <button type="button" class="btn btn-primary" [disabled]="addCommentForm.invalid" (click)="addComment()">Submit</button>
+                <button type="button" class="btn btn-primary" [disabled]="addCommentForm.invalid" (click)="addComment()"><i class="bi bi-chat-text"></i> Submit</button>
             </form>
 
         </div>
