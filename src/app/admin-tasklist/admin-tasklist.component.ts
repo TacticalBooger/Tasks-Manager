@@ -131,19 +131,6 @@ export class AdminTasklistComponent implements OnInit {
     this.getTasks();
   }
 
-  deleteComment(id: number) { // delete task when you press DELETE
-    const val = confirm("Are you sure you want to delete this comment?");
-    if (val) {
-      const taskIndex = this.backendData.comments.findIndex((task: any) => task.id === id);
-      if (taskIndex !== -1) {
-        this.serviceUserData.serviceDeleteTask(id).subscribe((data: any) => {
-          this.backendData.comments.splice(taskIndex, 1);
-        });
-      }
-    }
-    this.getTasks();
-  }
-
   editTask(id: number) { // runs when you hit EDIT on a task
     this.editTaskActive = true;
     this.additionalDetailsActive = false;

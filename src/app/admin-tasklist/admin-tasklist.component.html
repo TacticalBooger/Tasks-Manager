@@ -224,7 +224,7 @@
                 <h1><span class="alert alert-primary"><i class="bi bi-chat-dots"></i> Comments:</span></h1>
                 <br>
 
-                <div *ngFor="let comment of additional_comments">
+                <div *ngFor="let comment of additional_comments, let i = index">
                     <h2>{{comment}}</h2>
                     <hr>
                 </div>
