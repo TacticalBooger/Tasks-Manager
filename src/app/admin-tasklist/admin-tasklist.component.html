@@ -197,24 +197,24 @@
 
     <div class="card mx-auto" style="max-width: 600px; margin-top: 20px; margin-bottom: 20px;">
         <div class="card-body">
-            <h1 class="card-title text-center alert alert-primary" role="alert">{{additional_subject}}</h1>
+            <h1 class="card-title text-center alert alert-primary" role="alert">{{showTaskDetails.subject}}</h1>
             <hr>
-            <h3 class="card-text">{{additional_additional_description}}</h3>
+            <h3 class="card-text">{{showTaskDetails.additional_description}}</h3>
             <hr>
             <h1 class="mt-4 alert alert-primary"><i class="bi bi-info-circle"></i> Status: <span
-                    style="font-weight: bold; text-decoration: underline;">{{additional_status}}</span></h1>
+                    style="font-weight: bold; text-decoration: underline;">{{showTaskDetails.status}}</span></h1>
             <h1 class="alert alert-primary"><i class="bi bi-exclamation-triangle"></i> Priority: <span
-                    style="font-weight: bold; text-decoration: underline;">{{additional_priority}}</span></h1>
+                    style="font-weight: bold; text-decoration: underline;">{{showTaskDetails.priority}}</span></h1>
             <h1 class="alert alert-primary"><i class="bi bi-calendar3"></i> Start Date: <span
-                    style="font-weight: bold; text-decoration: underline;">{{additional_start_date}}</span></h1>
+                    style="font-weight: bold; text-decoration: underline;">{{showTaskDetails.start_date}}</span></h1>
             <h1 class="alert alert-primary"><i class="bi bi-calendar3-event"></i> Finish Date: <span
-                    style="font-weight: bold; text-decoration: underline;">{{additional_end_date}}</span></h1>
+                    style="font-weight: bold; text-decoration: underline;">{{showTaskDetails.finish_date}}</span></h1>
             <h1 class="alert alert-primary"><i class="bi bi-building"></i> Department: <span
-                    style="font-weight: bold; text-decoration: underline;">{{additional_department}}</span></h1>
+                    style="font-weight: bold; text-decoration: underline;">{{showTaskDetails.department}}</span></h1>
             <h1 class="alert alert-primary"><i class="bi bi-person"></i> Assigned To: <span
-                    style="font-weight: bold; text-decoration: underline;">{{additional_assignedTo}}</span></h1>
+                    style="font-weight: bold; text-decoration: underline;">{{showTaskDetails.assignedTo}}</span></h1>
             <h1 class="alert alert-primary"><i class="bi bi-check-circle"></i> Completed By: <span
-                    style="font-weight: bold; text-decoration: underline;">{{additional_completed_by |
+                    style="font-weight: bold; text-decoration: underline;">{{showTaskDetails.completed_by |
                     titlecase}}</span></h1>
 
             <br>
@@ -224,7 +224,7 @@
                 <h1><span class="alert alert-primary"><i class="bi bi-chat-dots"></i> Comments:</span></h1>
                 <br>
 
-                <div *ngFor="let comment of additional_comments, let i = index">
+                <div *ngFor="let comment of showTaskDetails.comments">
                     <h2>{{comment}}</h2>
                     <hr>
                 </div>
@@ -235,16 +235,16 @@
                     Characters)</label>
                 <textarea maxlength="500" formControlName="comments" class="form-control"
                     id="exampleFormControlTextarea1" rows="4" placeholder="Please write a comment here."></textarea>
-                    <span style="color: red;"
-                                *ngIf="addCommentForm.invalid && addCommentForm.touched">Please
-                                write a comment.</span>
+                <span style="color: red;" *ngIf="addCommentForm.invalid && addCommentForm.touched">Please
+                    write a comment.</span>
 
                 <div style="padding-top: 25px;"> <span *ngIf="showSuccess2" class="alert alert-success" role="alert"
                         style="text-align: center; font-size: x-large;">
                         {{editMessage2}}
                     </span></div>
                 <br>
-                <button type="button" class="btn btn-primary" [disabled]="addCommentForm.invalid" (click)="addComment()"><i class="bi bi-chat-text"></i> Submit</button>
+                <button type="button" class="btn btn-primary" [disabled]="addCommentForm.invalid"
+                    (click)="addComment()"><i class="bi bi-chat-text"></i> Submit</button>
             </form>
         </div>
     </div>

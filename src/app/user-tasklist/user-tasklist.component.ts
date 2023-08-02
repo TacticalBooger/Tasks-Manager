@@ -16,26 +16,15 @@ export class UserTasklistComponent implements OnInit {
   personLoggedInUpperCase = this.personLoggedIn.charAt(0).toUpperCase() + this.personLoggedIn.slice(1);
 
   //initialized variables
-
-  additional_subject!: any
-  additional_priority!: any
-  additional_status!: any
-  additional_start_date!: any
-  additional_end_date!: any
-  additional_assignedTo!: any
-  additional_department!: any
-  additional_additional_description!: any
-  additional_completed_by!: any
-  additional_comments!: any
-
   backendData!: any;
-  editMessage = ""
+  showTaskDetails!: any;
+  editMessage: string = ""
   selection!: number
   editTaskActive: boolean = false
   additionalDetailsActive: boolean = false
   selection2!: number
   showSuccess2!: boolean
-  editMessage2 = ""
+  editMessage2: string = ""
   addCommentForm!: FormGroup
 
   constructor(private fb: FormBuilder, private serviceUserData: UserDataService, private datePipe: DatePipe) {
@@ -104,17 +93,10 @@ export class UserTasklistComponent implements OnInit {
 
     let task = this.backendData.find((task: any) => task.id === id);
     if (task) {
-      this.additional_subject = task.subject;
-      this.additional_status = task.status;
-      this.additional_additional_description = task.additional_description;
-      this.additional_priority = task.priority;
-      this.additional_start_date = task.start_date;
-      this.additional_end_date = task.finish_date;
-      this.additional_assignedTo = task.assignedTo;
-      this.additional_department = task.department;
-      this.additional_completed_by = task.completed_by;
-      this.additional_comments = task.comments;
+      
       this.selection2 = task.id;
+
+      this.showTaskDetails = task;
 
       this.getTasks();
     }
@@ -122,14 +104,14 @@ export class UserTasklistComponent implements OnInit {
 
   addComment() {
     const selectedTask = this.backendData.find((task: any) => task.id === this.selection2);
-  
+
     if (selectedTask) {
       const newComment = this.addCommentForm.value.comments;
-      
+
       const person3 = this.personLoggedIn[0].toUpperCase() + this.personLoggedIn.slice(1);
-      
+
       selectedTask.comments.push(person3 + ": " + newComment);
-  
+
       this.serviceUserData.servicePatchTask(this.selection2, selectedTask).subscribe((data: any) => {
         this.getTasks();
       });
@@ -194,4 +176,3 @@ export class UserTasklistComponent implements OnInit {
   }
 
 }
-

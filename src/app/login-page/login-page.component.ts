@@ -11,8 +11,8 @@ import { UserDataService } from '../user-data.service';
 export class LoginPageComponent implements OnInit {
 
   loginForm!: FormGroup;
-  loginMessage = '';
-  loginMessage2 = '';
+  loginMessage: string = '';
+  loginMessage2: string = '';
 
   constructor(private fb: FormBuilder, private router: Router, private serviceUserData: UserDataService) {
 
