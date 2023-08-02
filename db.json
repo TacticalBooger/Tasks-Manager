@@ -10,8 +10,7 @@
       "department": "Engineering",
       "assignedTo": "Guri Xhufka",
       "completed_by": "Not Available",
-      "comments": [
-      ],
+      "comments": [],
       "id": 1
     },
     {
@@ -109,7 +108,7 @@
       "subject": "Organize Faculty Meeting",
       "additional_description": "Schedule a faculty meeting on 30th July to discuss curriculum updates, research opportunities, and any other relevant matters. Share the agenda in advance.",
       "priority": "HIGH",
-      "status": "Overdue",
+      "status": "In Progress",
       "start_date": "Jul 1, 2023",
       "finish_date": "Aug 31, 2023",
       "department": "Administrative",

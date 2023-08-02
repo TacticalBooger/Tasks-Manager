@@ -11,13 +11,12 @@ import { DatePipe } from '@angular/common';
 })
 export class UserTasklistComponent implements OnInit {
 
-  currentDate!: Date;
-  personLoggedIn = this.serviceUserData.personLoggedIn[1]
-  personLoggedInUpperCase = this.personLoggedIn.charAt(0).toUpperCase() + this.personLoggedIn.slice(1);
-
   //initialized variables
-  backendData!: any;
-  showTaskDetails!: any;
+  currentDate!: Date
+  personLoggedIn = this.serviceUserData.personLoggedIn[1]
+  personLoggedInUpperCase = this.personLoggedIn.charAt(0).toUpperCase() + this.personLoggedIn.slice(1)
+  backendData!: any
+  showTaskDetails!: any
   editMessage: string = ""
   selection!: number
   editTaskActive: boolean = false
@@ -38,8 +37,6 @@ export class UserTasklistComponent implements OnInit {
     this.addCommentForm = this.fb.group({
       comments: ['', Validators.required]
     })
-
-    this.updateTaskStatus()
   }
 
   updateTaskStatus() { //automatically runs on app and sets the status according to date
@@ -102,7 +99,7 @@ export class UserTasklistComponent implements OnInit {
     }
   }
 
-  addComment() {
+  addComment() { //runs when you submit a comment to backend
     const selectedTask = this.backendData.find((task: any) => task.id === this.selection2);
 
     if (selectedTask) {
@@ -142,7 +139,6 @@ export class UserTasklistComponent implements OnInit {
     }
   }
 
-
   priorityColor(userdata: any): string { //colors the PRIORITY section only
     if (userdata.priority === 'HIGH' && userdata.status === 'Completed') {
       return '#CBFFA9';
@@ -151,6 +147,7 @@ export class UserTasklistComponent implements OnInit {
     } else if (userdata.priority === 'LOW' && userdata.status === 'Completed') {
       return '#CBFFA9';
     }
+
 
     else if (userdata.priority === 'HIGH' && userdata.status === 'Overdue') {
       return '#FEA1A1';

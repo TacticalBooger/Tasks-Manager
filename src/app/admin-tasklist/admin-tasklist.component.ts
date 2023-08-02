@@ -11,14 +11,13 @@ import { DatePipe } from '@angular/common';
 })
 export class AdminTasklistComponent implements OnInit {
 
-  currentDate!: Date;
-
   //initialized variables
   editTaskForm!: FormGroup;
   personLoggedIn = this.serviceUserData.personLoggedIn[1]
 
-  backendData!: any;
-  showTaskDetails!: any;
+  backendData!: any
+  showTaskDetails!: any
+  currentDate!: Date
   editMessage: string = ""
   editMessage2: string = ""
   selection!: number
@@ -27,7 +26,7 @@ export class AdminTasklistComponent implements OnInit {
   additionalDetailsActive: boolean = false
   showSuccess!: boolean
   showSuccess2!: boolean
-  addCommentForm!: FormGroup;
+  addCommentForm!: FormGroup
 
   constructor(private fb: FormBuilder, private serviceUserData: UserDataService, private datePipe: DatePipe) {
 
@@ -54,8 +53,6 @@ export class AdminTasklistComponent implements OnInit {
     this.addCommentForm = this.fb.group({
       comments: ['', Validators.required]
     })
-
-    this.updateTaskStatus()
   }
 
   updateTaskStatus() { //automatically runs on app and sets the status according to date
@@ -77,7 +74,7 @@ export class AdminTasklistComponent implements OnInit {
   getTasks() { //grab tasks from backend
     this.serviceUserData.getData().subscribe((data: any) => {
 
-      this.backendData = data.userInfo;
+      this.backendData = data.userInfo
       this.updateTaskStatus()
     })
   }
@@ -187,7 +184,7 @@ export class AdminTasklistComponent implements OnInit {
     }
   }
 
-  addComment() {
+  addComment() { //runs when you submit a comment to backend
     const selectedTask = this.backendData.find((task: any) => task.id === this.selection2);
   
     if (selectedTask) {
@@ -227,7 +224,6 @@ export class AdminTasklistComponent implements OnInit {
     }
   }
 
-
   priorityColor(userdata: any): string { //colors the PRIORITY section only
     if (userdata.priority === 'HIGH' && userdata.status === 'Completed') {
       return '#CBFFA9';
@@ -237,6 +233,7 @@ export class AdminTasklistComponent implements OnInit {
       return '#CBFFA9';
     }
 
+    
     else if (userdata.priority === 'HIGH' && userdata.status === 'Overdue') {
       return '#FEA1A1';
     }

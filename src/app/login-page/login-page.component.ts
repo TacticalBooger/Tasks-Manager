@@ -48,5 +48,4 @@ export class LoginPageComponent implements OnInit {
         }, 10000);
     })
   }
-
 }

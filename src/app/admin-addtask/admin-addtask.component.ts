@@ -39,7 +39,7 @@ export class AdminAddtaskComponent implements OnInit {
   }
 
   //initialized variables
-  addTaskForm!: FormGroup;
+  addTaskForm!: FormGroup
 
   addedMessage!: string
   backendData!: any
@@ -50,7 +50,7 @@ export class AdminAddtaskComponent implements OnInit {
   getTasks() { //grab tasks from backend
     this.serviceUserData.getData().subscribe((data: any) => {
 
-      this.backendData = data.userInfo;
+      this.backendData = data.userInfo
     })
   }
 
