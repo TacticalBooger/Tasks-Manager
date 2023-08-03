@@ -104,7 +104,6 @@ export class UserTasklistComponent implements OnInit {
 
     if (selectedTask) {
       const newComment = this.addCommentForm.value.comments;
-
       const person3 = this.personLoggedIn[0].toUpperCase() + this.personLoggedIn.slice(1);
 
       selectedTask.comments.push(person3 + ": " + newComment);
