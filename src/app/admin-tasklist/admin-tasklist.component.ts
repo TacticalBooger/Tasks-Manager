@@ -90,7 +90,9 @@ export class AdminTasklistComponent implements OnInit {
       if (task) {
         this.serviceUserData.servicePatchTask(id, completeItem).subscribe((data: any) => {
           task.status = completeItem.status;
-          this.getTasks();
+          setTimeout(() => {
+            this.getTasks();
+          }, 500);
         });
       }
     }
@@ -106,7 +108,9 @@ export class AdminTasklistComponent implements OnInit {
         });
       }
     }
-    this.getTasks();
+    setTimeout(() => {
+      this.getTasks();
+    }, 500);
   }
 
   editTask(id: number) { // runs when you hit EDIT on a task

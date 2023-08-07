@@ -10,17 +10,16 @@
       "department": "Engineering",
       "assignedTo": "Guri Xhufka",
       "completed_by": "Not Available",
-      "comments": [
-      ],
+      "comments": [],
       "id": 1
     },
     {
       "subject": "Review Exam Results (Software Security)",
-      "additional_description": "Review the exam results for the 'Physics 201' course. Identify students who scored below 50% and notify them about a retake opportunity.",
+      "additional_description": "Review the exam results for the 'Software Security' course. Identify students who scored below 50% and notify them about a retake opportunity.",
       "priority": "MED",
-      "status": "In Progress",
-      "start_date": "Jul 29, 2023",
-      "finish_date": "Aug 31, 2023",
+      "status": "Overdue",
+      "start_date": "Aug 1, 2023",
+      "finish_date": "Sep 30, 2023",
       "department": "Engineering",
       "assignedTo": "Shefqet Meda",
       "completed_by": "Not Available",

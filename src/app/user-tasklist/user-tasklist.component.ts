@@ -74,7 +74,9 @@ export class UserTasklistComponent implements OnInit {
       if (task) {
         this.serviceUserData.servicePatchTask(id, completeItem).subscribe((data: any) => {
           task.status = completeItem.status;
-          this.getTasks();
+          setTimeout(() => {
+            this.getTasks();
+          }, 500);
         });
       }
     }
