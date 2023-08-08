@@ -190,13 +190,13 @@ export class AdminTasklistComponent implements OnInit {
 
   addComment() { //runs when you submit a comment to backend
     const selectedTask = this.backendData.find((task: any) => task.id === this.selection2);
-  
+
     if (selectedTask) {
       const newComment = this.addCommentForm.value.comments;
       const person3 = this.personLoggedIn[0].toUpperCase() + this.personLoggedIn.slice(1);
-      
+
       selectedTask.comments.push(person3 + ": " + newComment);
-  
+
       this.serviceUserData.servicePatchTask(this.selection2, selectedTask).subscribe((data: any) => {
         this.getTasks();
       });
@@ -236,7 +236,7 @@ export class AdminTasklistComponent implements OnInit {
       return '#CBFFA9';
     }
 
-    
+
     else if (userdata.priority === 'HIGH' && userdata.status === 'Overdue') {
       return '#FEA1A1';
     }
