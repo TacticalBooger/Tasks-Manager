@@ -29,8 +29,8 @@
     {
       "subject": "Request Resource Purchase",
       "additional_description": "Submit a request to purchase additional laboratory equipment for the 'Database Fundamentals' department. Include the required items, estimated cost, and justification.",
-      "priority": "MED",
-      "status": "Overdue",
+      "priority": "LOW",
+      "status": "In Progress",
       "start_date": "Jul 1, 2023",
       "finish_date": "Aug 31, 2023",
       "department": "Engineering",
@@ -48,7 +48,7 @@
       "finish_date": "Jul 26, 2023",
       "department": "Other",
       "assignedTo": "Guri Xhufka",
-      "completed_by": "jackson",
+      "completed_by": "shefqet",
       "comments": [],
       "id": 4
     },
